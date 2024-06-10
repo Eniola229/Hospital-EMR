@@ -20,6 +20,16 @@
             <x-text-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name" />
             <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
         </div>
+        
+        <div class="mt-4>
+        <select name="role" id="role" class="mt-4 width-100">
+            <option value="" selected  disabled>Choose Role</option>
+            <option value="0">Nurse</option>
+            <option value="3">Doctor</option>
+            <option value="3">Pharmacy</option>
+        </select>
+        <x-input-error :messages="$errors->get('role')" class="mt-2" />
+    </div>
 
         <div  class="mt-4">
             <x-input-label for="qualification" :value="__('Qualification')" />
