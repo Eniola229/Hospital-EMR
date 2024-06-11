@@ -21,7 +21,7 @@
             <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
         </div>
         
-        <div class="mt-4>
+        <div class="mt-4">
         <select name="role" id="role" class="mt-4 width-100">
             <option value="" selected  disabled>Choose Role</option>
             <option value="0">Nurse</option>
