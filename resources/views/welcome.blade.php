@@ -60,9 +60,6 @@
                 <nav id="navmenu" class="navmenu">
                     <ul>
                         <li><a href="#hero" class="active">Home<br></a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#departments">Departments</a></li>
                         <li><a href="#doctors">Doctors</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -70,7 +67,8 @@
                 </nav>
 
                 <a class="cta-btn d-none d-sm-block" href="#appointment">Make an Appointment</a>
-                <a class="cta-btn d-none d-sm-block" href="{{ url('chooselogin') }}">Login</a>
+                <a class="cta-btn d-none d-sm-block" href="{{ url('login') }}">Doctors Login</a>
+                <a class="cta-btn d-none d-sm-block" href="{{ url('login') }}">Patient Login</a>
 
             </div>
 
@@ -289,36 +287,43 @@
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-                <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
+                <form action="{{ route('appointment.store') }}" method="POST" class="php-email-form">
+                    @csrf
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <input type="text" name="name" class="form-control" id="name"
-                                placeholder="Full Name" required="">
+                                placeholder="Full Name" required>
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
                         <div class="col-md-4 form-group mt-3 mt-md-0">
                             <input type="email" class="form-control" name="email" id="email"
                                 placeholder="Email" required="">
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
 
                         <div class="col-md-4 form-group mt-3 mt-md-0">
                             <input type="text" class="form-control" name="home_address" id="Home Adress"
                                 placeholder="Home Adress" required="">
+                            <x-input-error :messages="$errors->get('home_address')" class="mt-2" />
                         </div>
 
                         <div class="col-md-4 form-group mt-3 mt-md-0">
                             <input type="text" class="form-control" name="state_of_residence"
                                 id="State of Residence" placeholder="State of Residence" required="">
+                            <x-input-error :messages="$errors->get('state_of_residence')" class="mt-2" />
                         </div>
 
                         <div class="col-md-4 form-group mt-3 mt-md-0">
                             <input type="tel" class="form-control" name="phone_number" id="phone"
                                 placeholder="Phone Number" required="">
+                            <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 form-group mt-3">
                             <input type="datetime-local" name="a_date" class="form-control datepicker"
                                 id="date" placeholder="Appointment Date" required="">
+                            <x-input-error :messages="$errors->get('a_date')" class="mt-2" />
                         </div>
                         <div class="col-md-4 form-group mt-3">
                             <select name="department" id="department" class="form-select" required="">
@@ -329,15 +334,17 @@
                             </select>
                         </div>
 
-                    <div class="form-group mt-3">
-                        <textarea class="form-control" name="complain" rows="5" placeholder="Complain"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
-                    </div>
-                    <div class="text-center"><button type="submit">Submit</button></div>
+                        <div class="form-group mt-3">
+                            <textarea class="form-control" name="complain" rows="5" placeholder="Complain"></textarea>
+                            <x-input-error :messages="$errors->get('complain')" class="mt-2" />
+                        </div>
+                        <div class="mb-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your appointment request has been sent successfully. Thank you!
+                            </div>
+                        </div>
+                        <div class="text-center"><button type="submit">Submit</button></div>
                 </form>
 
             </div>
@@ -477,6 +484,34 @@
 
     </footer>
 
+    <!-- Modal -->
+    <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="statusModalLabel">Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ session('status') }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            @if (session('status'))
+                $('#statusModal').modal('show');
+            @endif
+        });
+    </script>
+
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
@@ -486,7 +521,6 @@
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
