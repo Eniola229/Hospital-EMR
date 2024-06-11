@@ -70,7 +70,7 @@
                      <li><a href="ecounter.php?patientid="><i class="fa fa-clock-o orange_color"></i> <span>Account</span></a></li>
                      <li><a href="ecounter.php?patientid="><i class="fa fa-clock-o orange_color"></i> <span>Pharmacy</span></a></li>
       
-            
+                 
                     
                      <li class="active">
                         <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
