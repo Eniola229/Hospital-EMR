@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RHC EMR | Profile</title>
+    <title>RHC EMR | Complains</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
     <!-- color css -->
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}" />
-    <!-- select bootstrap -->
+    <!-- select bootstrap --> 
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}" />
     <!-- scrollbar css -->
     <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" />
@@ -40,7 +40,7 @@
     <div class="full_container">
         <div class="inner_container">
             <!-- Sidebar  -->
-            @include('components.sidenav')
+             @include('components.sidenav')
             <!-- end sidebar -->
             <!-- right content -->
             <div id="content">
@@ -121,28 +121,33 @@
 
                         <div class="row column3">
                         </div>
-         
-                       <div class="py-12">
-                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                                <div class="max-w-xl">
-                                   @include('profile.partials.update-profile-information-form')
-                                </div>
-                            </div>
-
-                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                                <div class="max-w-xl">
-                                    @include('profile.partials.update-password-form')
-                                </div>
-                            </div>
-
-                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                                <div class="max-w-xl">
-                                    @include('profile.partials.delete-user-form')
-                                </div>
-                            </div>
+                        <div class="row column4 graph">
+                            <h4>Complains</h4>
+                           <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Full Name</th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Phone Number</th>
+                                  <th scope="col">Complains</th>
+                                  <th scope="col">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                            @foreach($data as $complains)
+                                <tr>
+                                  <th scope="row">{{ $complains->id }}</th>
+                                  <td>{{ $complains->name }}</td>
+                                  <td>{{ $complains->email}}</td>
+                                  <td>{{ $complains->phone_number }}</td>
+                                  <td>{{ $complains->complain }}</td>
+                                  <td><button class="btn btn-success">View</button></td>
+                                </tr>
+                            @endforeach
+                              </tbody>
+                            </table>
                         </div>
-                    </div>
                     </div>
                     <!-- footer -->
                     <div class="container-fluid">
@@ -232,4 +237,3 @@
 </body>
 
 </html>
-

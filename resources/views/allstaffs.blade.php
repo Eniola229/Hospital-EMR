@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RHC EMR | Profile</title>
+    <title>RHC EMR | All Staffs</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- responsive css -->
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
-    <!-- color css -->
+    <!-- color css --> 
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}" />
@@ -40,7 +40,7 @@
     <div class="full_container">
         <div class="inner_container">
             <!-- Sidebar  -->
-            @include('components.sidenav')
+           @include('components.sidenav')
             <!-- end sidebar -->
             <!-- right content -->
             <div id="content">
@@ -121,28 +121,35 @@
 
                         <div class="row column3">
                         </div>
-         
-                       <div class="py-12">
-                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                                <div class="max-w-xl">
-                                   @include('profile.partials.update-profile-information-form')
-                                </div>
-                            </div>
-
-                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                                <div class="max-w-xl">
-                                    @include('profile.partials.update-password-form')
-                                </div>
-                            </div>
-
-                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                                <div class="max-w-xl">
-                                    @include('profile.partials.delete-user-form')
-                                </div>
-                            </div>
+                        <div class="row column4 graph">
+                            <h4>All Staffs</h4>
+                           <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Profile Picture</th>
+                                  <th scope="col">First Name</th>
+                                  <th scope="col">Last Name</th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Location</th>
+                                  <th scope="col">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                         @foreach($data as $staff)
+                                <tr>
+                                  <th scope="row">{{ $staff->id }}</th>
+                                  <td> <img src="{{ asset('storage/' . $staff->avatar) }}" height="100" width="70" class="card-img-top" alt="Profile Picture"></td>
+                                  <td>{{ $staff->first_name }}</td>
+                                  <td>{{ $staff->last_name }}</td>
+                                  <td>{{ $staff->email}}</td>
+                                  <td>{{ $staff->location }}</td>
+                                  <td><button class="btn btn-success">View</button></td>
+                                </tr>
+                            @endforeach
+                              </tbody>
+                            </table>
                         </div>
-                    </div>
                     </div>
                     <!-- footer -->
                     <div class="container-fluid">
@@ -232,4 +239,3 @@
 </body>
 
 </html>
-

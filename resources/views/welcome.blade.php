@@ -148,78 +148,24 @@
 
                 <div class="row gy-4">
 
+                 @foreach($data as $doctor)
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="team-member d-flex align-items-start">
-                            <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid"
-                                    alt=""></div>
+                            <div class="pic">
+                              <img style="height: 20vh" src="{{ asset('storage/' . $doctor->avatar) }}" class="img-fluid" alt="">
+                            </div>
                             <div class="member-info">
-                                <h4>Walter White</h4>
-                                <span>Chief Medical Officer</span>
-                                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                                <h4>{{ $doctor->first_name }}  {{ $doctor->last_name}}</h4>
+                                <span>{{ $doctor->specialization }}</span>
+                                <p>{{ $doctor->intro}}</p>
                                 <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                                    <button class="btn btn-primary">Make An Apointment</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                @endforeach
                     </div><!-- End Team Member -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="team-member d-flex align-items-start">
-                            <div class="pic"><img src="assets/img/doctors/doctors-2.jpg" class="img-fluid"
-                                    alt=""></div>
-                            <div class="member-info">
-                                <h4>Sarah Jhonson</h4>
-                                <span>Anesthesiologist</span>
-                                <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""> <i class="bi bi-linkedin"></i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Team Member -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="team-member d-flex align-items-start">
-                            <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid"
-                                    alt=""></div>
-                            <div class="member-info">
-                                <h4>William Anderson</h4>
-                                <span>Cardiology</span>
-                                <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""> <i class="bi bi-linkedin"></i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Team Member -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="team-member d-flex align-items-start">
-                            <div class="pic"><img src="assets/img/doctors/doctors-4.jpg" class="img-fluid"
-                                    alt=""></div>
-                            <div class="member-info">
-                                <h4>Amanda Jepson</h4>
-                                <span>Neurosurgeon</span>
-                                <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""> <i class="bi bi-linkedin"></i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Team Member -->
-
                 </div>
 
             </div>
@@ -237,7 +183,7 @@
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
                         <i class="fa-solid fa-user-doctor"></i>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="105" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Doctors</p>
                         </div>
@@ -246,7 +192,7 @@
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
                         <i class="fa-regular fa-hospital"></i>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Departments</p>
                         </div>
@@ -255,7 +201,7 @@
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
                         <i class="fas fa-flask"></i>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="16" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Research Labs</p>
                         </div>
@@ -264,7 +210,7 @@
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
                         <i class="fas fa-award"></i>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Awards</p>
                         </div>

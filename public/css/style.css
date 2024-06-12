@@ -904,7 +904,7 @@ a[data-toggle="collapse"] {
 }
 
 .user_img img {
-    border-radius: 100% 100%;
+    border-radius: 10%;
 }
 
 .user_info {

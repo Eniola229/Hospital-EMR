@@ -64,9 +64,11 @@ class RegisteredUserController extends Controller
 
                 // Store the resized avatar
                  $avatarPath = $request->file('avatar')->store('public/avatars');
+                 $avatarPath = str_replace('public/', '', $avatarPath);
             } else {
                 // Avatar is within 2MB size limit, store it as usual
                 $avatarPath = $request->file('avatar')->store('public/avatars');
+                $avatarPath = str_replace('public/', '', $avatarPath);
             }
      } else {
         $avatarPath = "no file uploaded";
