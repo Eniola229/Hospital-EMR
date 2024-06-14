@@ -7,7 +7,10 @@ use App\Http\Controllers\Hospital\AppointmentController;
 use App\Http\Controllers\Hospital\ShowController; 
 use App\Http\Controllers\Hospital\ViewComplainsController; 
 use App\Http\Controllers\Hospital\ViewStaffController; 
+use App\Http\Controllers\Hospital\ViewStaffSpecifiController; 
+use App\Http\Controllers\Hospital\AppointmentDocController; 
 
+//This is the route for all page
 Route::get('/', function () {
     return view('welcome');
 })->name('home');;
@@ -16,10 +19,14 @@ Route::get('/complains', function () {
     return view('complains');
 })->name('complains.showcomplains');;
 
-
 Route::get('/allstaffs', function () {
     return view('allstaffs');
-})->name('allstaffs.viewstaffs');;
+})->name('allstaffs.viewstaffs');
+
+Route::get('/seedoctor', function() {
+    return view('seedoctor');
+})->name('seedoctor.doctor');
+
 
 
 Route::get('/dashboard', function () {
@@ -28,19 +35,16 @@ Route::get('/dashboard', function () {
 
 //This is for Appointment 
 Route::post('appointment', [AppointmentController::class, 'store'])->name('appointment.store');
-
 //This is to view all doctors on the home page 
 Route::get('/', [ShowController::class, 'show'])->name('welcome.show');
-
-
 //This is to show all Complains on the dasboard (Appointmen)
 Route::get('/complains', [ViewComplainsController::class, 'showcomplains'])->name('complains.showcomplains');
-
-
 //This is to show all Staff on the dasboard 
 Route::get('/allstaffs', [ViewStaffController::class, 'viewstaffs'])->name('allstaffs.viewstaffs');
-
-
+//This is to make an appointment with a doctor (For The Viewing part of the doctor part)
+Route::get('/seedoctor/{id}', [ViewStaffSpecifiController::class, 'show'])->name('seedoctor.show');
+//This is the route to submit the doc app
+Route::post('appointmentdoc', [AppointmentDocController::class, 'store'])->name('appointmentdoc.store');
 
 
 //For athentication

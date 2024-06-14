@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>RHC EMR | HOME</title>
+    <title>RHC EMR | Appointment</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <!-- Laravel Asset Helper for Favicons -->
@@ -59,8 +59,8 @@
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="#hero" class="active">Home<br></a></li>
-                        <li><a href="#doctors">Doctors</a></li>
+                        <li><a href="{{ url('/')}}" >Home<br></a></li>
+                        <li><a href="#doctors" class="active">Doctors</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -77,151 +77,6 @@
     </header>
 
     <main class="main">
-
-        <!-- Hero Section -->
-        <section id="hero" class="hero section">
-
-            <img src="assets/img/bg.jpg" alt="" data-aos="fade-in">
-
-            <div class="container position-relative">
-
-                <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-                    <h2>WELCOME TO Redeemers Health Centre</h2>
-                    <p>Choose Our Hospital, Choose The Best Care For Yourself</p>
-                </div><!-- End Welcome -->
-
-                <div class="content row gy-4">
-                    <div class="col-lg-4 d-flex align-items-stretch">
-                        <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
-                            <h3>Do you need to see a Doctor?</h3>
-                            <p>
-                                We are here to help you get the best care. Redeemers Health Centre
-                            </p>
-                            <div class="text-center">
-                                <a href="#about" class="more-btn"><span>Learn More</span> <i
-                                        class="bi bi-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Why Box -->
-
-                    <div class="col-lg-8 d-flex align-items-stretch">
-                        <div class="d-flex flex-column justify-content-center">
-                            <div class="row gy-4">
-
-                                <div class="col-xl-12 d-flex align-items-stretch">
-
-                                    <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
-                                        <h3 class="text">Search for any of our Professional Doctors!</h3>
-                                        <div class="row">
-                                            <div class="col">
-                                                <input style="height:10vh;" type="text" class="form-control"
-                                                    placeholder="Specification (Type Of Doctor)"
-                                                    aria-label="Specification (Type Of Doctor)">
-                                            </div>
-                                            <div class="col">
-                                                <input type="text" style="height:10vh;" class="form-control"
-                                                    placeholder="Location" aria-label="Locations">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div><!-- End Icon Box -->
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- End  Content-->
-
-            </div>
-
-        </section><!-- /Hero Section -->
-
-        <!-- Doctors Section -->
-        <section id="doctors" class="doctors section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Doctors</h2>
-                <p>Meet Our Professional Doctor's</p>
-            </div><!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row gy-4">
-
-                 @foreach($data as $doctor)
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="team-member d-flex align-items-start">
-                            <div class="pic">
-                              <img style="height: 20vh" src="{{ asset('storage/' . $doctor->avatar) }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>{{ $doctor->first_name }}  {{ $doctor->last_name}}</h4>
-                                <span>{{ $doctor->specialization }}</span>
-                                <p>{{ $doctor->intro}}</p>
-                                <div class="social">
-                                <a style="display: inline-block; width: auto;" href="{{ url('seedoctor', $doctor->id) }}">
-                                    <button class="btn btn-primary">Make An Appointment</button>
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-                    </div><!-- End Team Member -->
-                </div>
-
-            </div>
-
-        </section><!-- /Doctors Section -->
-
-
-        <!-- Stats Section -->
-        <section id="stats" class="stats section">
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <i class="fa-solid fa-user-doctor"></i>
-                        <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="105" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Doctors</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <i class="fa-regular fa-hospital"></i>
-                        <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Departments</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <i class="fas fa-flask"></i>
-                        <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="16" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Research Labs</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <i class="fas fa-award"></i>
-                        <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Awards</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                </div>
-
-            </div>
-
         </section><!-- /Stats Section -->
 
         <!-- Appointment Section -->
@@ -229,14 +84,19 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Appointment</h2>
-                <p>Make an Appointment</p>
+                <h2>Appointment With <span style="color: blue;">{{$doctor->first_name}}</span> </h2>
+                <p>Make an Appointment With <span style="color: blue; font-weight: bold;">{{ $doctor-> first_name}} {{$doctor->last_name}}</span></p>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-                <form action="{{ route('appointment.store') }}" method="POST" class="php-email-form">
+                <form action="{{ route('appointmentdoc.store') }}" method="POST" class="php-email-form">
                     @csrf
+
+                    <input type="hidden" value="{{ $doctor->first_name}} {{ $doctor->last_name}}" name="doctor_name" class="form-control" id="doctor_name" >
+                    <input type="hidden" name="doctor_email" value="{{ $doctor->email}}" class="form-control" id="doctor_email" >
+                    <input type="hidden" name="doctor_special" value="{{ $doctor->specialization}}" class="form-control" id="doctor_special" >
+
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <input type="text" name="name" class="form-control" id="name"
@@ -266,21 +126,15 @@
                                 placeholder="Phone Number" required="">
                             <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 form-group mt-3">
+
+                     <div class="col-md-4 form-group mt-3">
                             <input type="datetime-local" name="a_date" class="form-control datepicker"
                                 id="date" placeholder="Appointment Date" required="">
                             <x-input-error :messages="$errors->get('a_date')" class="mt-2" />
                         </div>
-                        <div class="col-md-4 form-group mt-3">
-                            <select name="department" id="department" class="form-select" required="">
-                                <option value="">Select Department</option>
-                                <option value="Department 1">Department 1</option>
-                                <option value="Department 2">Department 2</option>
-                                <option value="Department 3">Department 3</option>
-                            </select>
-                        </div>
+                    </div>
+                    <div class="row">
+       
 
                         <div class="form-group mt-3">
                             <textarea class="form-control" name="complain" rows="5" placeholder="Complain"></textarea>

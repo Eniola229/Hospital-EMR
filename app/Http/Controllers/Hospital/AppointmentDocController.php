@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Hospital;
 
-use App\Models\Appointment;  
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
 use App\Mail\AppoinmentMail;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\Appointmentdoc;  
 
 
-class AppointmentController extends Controller
+class AppointmentDocController extends Controller
 {
-        public function store(Request $request) : RedirectResponse {
+      public function store(Request $request) : RedirectResponse {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'max:55'], 
@@ -28,6 +27,9 @@ class AppointmentController extends Controller
 
         $app = Appointment::create([
             'name' => $request->name,
+            'doctor_name' => $request->doctor_name,
+            'doctor_email' => $request->doctor_email,
+            'specialization' => $request->specialization,
             'phone_number' => $request->phone_number,
             'home_address' => $request->home_address,
             'state_of_residence' => $request->state_of_residence,
@@ -40,9 +42,4 @@ class AppointmentController extends Controller
 
                 return redirect()->back()->with('status', 'appointment-success');
         }
-
-
-
 }
-
-
