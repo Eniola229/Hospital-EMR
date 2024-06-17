@@ -122,38 +122,77 @@
                         <div class="row column3">
                         </div>
                         <div class="row column4 graph">
-                            <h4>Complains(Appointment)</h4>
+                            <h4>Patient Info</h4>
                            <table class="table table-striped">
                               <thead>
                                 <tr>
                                   <th scope="col">#</th>
                                   <th scope="col">Full Name</th>
-                                  <th scope="col">Doctor Name</th>
-                                  <th scope="col">Patient Phone Number</th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Phone Number</th>
+                                  <th scope="col">Home Address</th>
+                                  <th scope="col">State</th>
+                                  <th scope="col">Date of Appointment</th>
+                                  <th scope="col">Department</th>
                                   <th scope="col">Complains</th>
                                   <th scope="col">Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
-                            @foreach($data as $complains)
                                 <tr>
-                                  <th scope="row">{{ $complains->id }}</th>
-                                  <td>{{ $complains->name }}</td>
-                                  <td>{{ $complains->doctor_name}}</td>
-                                  <td>{{ $complains->phone_number }}</td>
-                                  <td>{{ $complains->complain }}</td>
+                                  <th scope="row">{{ $complain->id }}</th>
+                                  <td>{{ $complain->name }}</td>
+                                  <td>{{ $complain->email}}</td>
+                                  <td>{{ $complain->phone_number}}</td>
+                                  <td>{{ $complain->home_address }}</td>
+                                  <td>{{ $complain->state_of_residence }}</td>
+                                  <td>{{ $complain->a_date }}</td>
+                                  <td>{{ $complain->department }}</td>
+                                  <td>{{ $complain->complain }}</td>
                                   <td>
-                                 <a style="display: inline-block; width: auto;" href="{{ url('viewsinglecomplain', $complains->id) }}">
-                                    <button class="btn btn-primary">View</button> 
+                                    <a style="display: inline-block; width: auto;" href="{{ url('addtopatientrecord', $patient->id) }}">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                         Add to Patient Record
+                                        </button>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                             </table>
+                             <table class="table table-striped">
+                             	<h5>Doctor's Information</h5>
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Doctor Name</th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Specialization</th>
+                                  <th scope="col">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">{{ $complain->id }}</th>
+                                  <td>{{ $complain->doctor_name }}</td>
+                                  <td>{{ $complain->doctor_email}}</td>
+                                  <td>{{ $complain->doctor_special }}</td>
+                                  <td>
+                                 <a style="display: inline-block; width: auto;" href="{{ url('viewsinglecomplain', $complain->id) }}">
+                                    <button class="btn btn-primary">Reload Page</button> 
+                                </a>
+                                 <a style="display: inline-block; width: auto;" href="{{ url('viewsinglecomplain', $complain->id) }}">
+                                    <button class="btn btn-primary">Send Doctor Message</button> 
                                 </a>
                                   </td>
                                 </tr>
-                            @endforeach
                               </tbody>
                             </table>
                         </div>
                     </div>
-                    <!-- footer -->
+
+
+                   
+                     <!-- footer -->
                     <div class="container-fluid">
                         <div class="footer">
                             <p>Copyright © 2024 Developed by Azriel Technologies All rights reserved.<br>

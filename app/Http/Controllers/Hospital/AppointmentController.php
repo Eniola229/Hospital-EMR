@@ -15,6 +15,9 @@ class AppointmentController extends Controller
 {
         public function store(Request $request) : RedirectResponse {
         $request->validate([
+            'doctor_name' => ['nullable', 'string', 'max:255'],
+            'doctor_email' => ['nullable', 'string', 'max:255'],
+            'doctor_special' => ['nullable', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'max:55'], 
             'home_address' => ['required', 'string', 'max:255'],
@@ -27,6 +30,9 @@ class AppointmentController extends Controller
 
 
         $app = Appointment::create([
+            'doctor_name' => $request->doctor_name,
+            'doctor_email' => $request->doctor_email,
+            'doctor_special' => $request->doctor_special,
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'home_address' => $request->home_address,
@@ -37,7 +43,8 @@ class AppointmentController extends Controller
             'email' => $request->email,
         ]);
                 Mail::to($app->email)->send(new AppoinmentMail($app));
-
+                
+                
                 return redirect()->back()->with('status', 'appointment-success');
         }
 

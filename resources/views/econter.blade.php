@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RHC EMR | Complains</title>
+    <title>RHC EMR | Ecounter</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -42,7 +42,7 @@
             <!-- Sidebar  -->
              @include('components.sidenav')
             <!-- end sidebar -->
-            <!-- right content -->
+            <!-- right content --> 
             <div id="content">
                 <!-- topbar -->
                 <div class="topbar">
@@ -122,29 +122,29 @@
                         <div class="row column3">
                         </div>
                         <div class="row column4 graph">
-                            <h4>Complains(Appointment)</h4>
+                            <h4>Choose Patients</h4>
                            <table class="table table-striped">
                               <thead>
                                 <tr>
                                   <th scope="col">#</th>
+                                  <th scope="col">Patient ID</th>
                                   <th scope="col">Full Name</th>
-                                  <th scope="col">Doctor Name</th>
-                                  <th scope="col">Patient Phone Number</th>
-                                  <th scope="col">Complains</th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Phone Number</th>
                                   <th scope="col">Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
-                            @foreach($data as $complains)
+                            @foreach($patients as $patient)
                                 <tr>
-                                  <th scope="row">{{ $complains->id }}</th>
-                                  <td>{{ $complains->name }}</td>
-                                  <td>{{ $complains->doctor_name}}</td>
-                                  <td>{{ $complains->phone_number }}</td>
-                                  <td>{{ $complains->complain }}</td>
+                                  <th scope="row">{{ $patient->id }}</th>
+                                  <td>{{ $patient->patientID }}</td>
+                                  <td>{{ $patient->full_name }}</td>
+                                  <td>{{ $patient->email}}</td>
+                                  <td>{{ $patient-> phone_number}}</td>
                                   <td>
-                                 <a style="display: inline-block; width: auto;" href="{{ url('viewsinglecomplain', $complains->id) }}">
-                                    <button class="btn btn-primary">View</button> 
+                                 <a style="display: inline-block; width: auto;" href="{{ url('viewsingleeconterpatient', $patient->id) }}">
+                                    <button class="btn btn-primary">Econter Note</button> 
                                 </a>
                                   </td>
                                 </tr>

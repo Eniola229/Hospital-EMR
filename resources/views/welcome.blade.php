@@ -114,15 +114,18 @@
                                         <h3 class="text">Search for any of our Professional Doctors!</h3>
                                         <div class="row">
                                             <div class="col">
-                                                <input style="height:10vh;" type="text" class="form-control"
-                                                    placeholder="Specification (Type Of Doctor)"
+                                            <form action="{{ route('welcome.show') }}" method="GET">
+                                                <input style="height:10vh;" type="search" class="form-control"
+                                                   name="search" placeholder="Specification (Type Of Doctor)"
                                                     aria-label="Specification (Type Of Doctor)">
                                             </div>
-                                            <div class="col">
+                                            <!-- <div class="col">
                                                 <input type="text" style="height:10vh;" class="form-control"
-                                                    placeholder="Location" aria-label="Locations">
-                                            </div>
+                                                   name="location" placeholder="Location" aria-label="Locations">
+                                        </div> -->
                                         </div>
+                                         <button  style="width: 80%;" class="btn btn-primary mt-4">Search</button>
+                                         </form>
                                     </div>
 
                                 </div><!-- End Icon Box -->
@@ -157,10 +160,11 @@
                             <div class="member-info">
                                 <h4>{{ $doctor->first_name }}  {{ $doctor->last_name}}</h4>
                                 <span>{{ $doctor->specialization }}</span>
+                                <span>{{ $doctor->location }}</span>
                                 <p>{{ $doctor->intro}}</p>
                                 <div class="social">
                                 <a style="display: inline-block; width: auto;" href="{{ url('seedoctor', $doctor->id) }}">
-                                    <button class="btn btn-primary">Make An Appointment</button>
+                                    <button class="btn btn-primary">Make An Appointment</button> 
                                 </a>
                                 </div>
                             </div>
@@ -235,11 +239,11 @@
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-                <form action="{{ route('appointment.store') }}" method="POST" class="php-email-form">
+                <form action="{{ route('appointmentdoc.store') }}" method="POST" class="php-email-form">
                     @csrf
                     <div class="row">
                         <div class="col-md-4 form-group">
-                            <input type="text" name="name" class="form-control" id="name"
+                           <input type="text" name="name" class="form-control" id="name"
                                 placeholder="Full Name" required>
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>

@@ -12,6 +12,9 @@ class Appointmentdoc extends Model
      protected $table = 'appoinmentdoc';
 
     protected $fillable = [
+        'doctor_name',
+        'doctor_email',
+        'doctor_special',
         'name',
         'phone_number',
         'home_address',

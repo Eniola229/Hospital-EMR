@@ -35,6 +35,20 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
 </head>
+  <style>
+        .profile-header {
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+    </style>
 
 <body class="dashboard dashboard_1">
     <div class="full_container">
@@ -121,37 +135,60 @@
 
                         <div class="row column3">
                         </div>
-                        <div class="row column4 graph">
-                            <h4>Complains(Appointment)</h4>
-                           <table class="table table-striped">
-                              <thead>
-                                <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Full Name</th>
-                                  <th scope="col">Doctor Name</th>
-                                  <th scope="col">Patient Phone Number</th>
-                                  <th scope="col">Complains</th>
-                                  <th scope="col">Actions</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                            @foreach($data as $complains)
-                                <tr>
-                                  <th scope="row">{{ $complains->id }}</th>
-                                  <td>{{ $complains->name }}</td>
-                                  <td>{{ $complains->doctor_name}}</td>
-                                  <td>{{ $complains->phone_number }}</td>
-                                  <td>{{ $complains->complain }}</td>
-                                  <td>
-                                 <a style="display: inline-block; width: auto;" href="{{ url('viewsinglecomplain', $complains->id) }}">
-                                    <button class="btn btn-primary">View</button> 
-                                </a>
-                                  </td>
-                                </tr>
-                            @endforeach
-                              </tbody>
-                            </table>
-                        </div>
+                       <div class="container mt-4">
+					    <!-- Profile Header -->
+					    <!-- <div class="row">
+					        <div class="col-md-12">
+					            <div class="profile-header">
+					                <h1>{{ $patient->full_name }} Profile</h1>
+					                <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-avatar">
+					                <h3>{{ $patient->full_name }} </h3>
+					                <p>Email: {{ $patient->email }} </p>
+					            </div>
+					        </div>
+					    </div> -->
+
+					    <!-- Profile Information -->
+					    <div class="row mt-4">
+					        <div class="col-md-6">
+					            <div class="card">
+					                <div class="card-header">
+					                    Personal Information
+					                </div>
+					                <div class="card-body">
+					                    <p><strong>Name:</strong> {{ $patient->full_name }} </p>
+					                    <p><strong>Email:</strong> {{ $patient->email }} </p>
+					                    <p><strong>Phone Number:</strong> {{ $patient->phone_number }} </p>
+					                    <p><strong>Address:</strong> {{ $patient->home_address }} </p>
+					                </div>
+					            </div>
+					        </div>
+					        <div class="col-md-6">
+					            <div class="card">
+					                <div class="card-header">
+					                    Additional Information
+					                </div>
+					                <div class="card-body">
+					                    <p><strong>Member Since:</strong> {{ $patient->created_at }} </p>
+					                    <p><strong>Status:</strong> <span style="color: green;">Active</span></p>
+					                    <p><strong>Emegency Number :</strong> <a href="#">{{ $patient->phone_number }} </a></p>
+					                     <!-- Logout Button -->
+										    <div class="row mt-4">
+										        <div class="col-md-12 text-center">
+										            <form action="{{ url('viewsingleeconterpatient', $patient->id) }}" method="GET">
+										                @csrf
+										                <button type="submit" class="btn btn-danger">Swtch to Ecounter Note</button>
+										            </form>
+										        </div>
+										    </div>
+										</div>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+
+					  
+
                     </div>
                     <!-- footer -->
                     <div class="container-fluid">

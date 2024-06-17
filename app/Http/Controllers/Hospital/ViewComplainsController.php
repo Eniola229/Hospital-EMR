@@ -4,16 +4,15 @@ namespace App\Http\Controllers\Hospital;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Appointment;  
+use App\Models\Appointmentdoc;  
 
 
 class ViewComplainsController extends Controller
 {
     public function showcomplains(Request $request)
     {
-        $data = Appointment::all();
+        $data = Appointmentdoc::all();
         
-        // Ensure the return statement is inside the method
         return view('complains', compact('data'));
     }
-}
+} 

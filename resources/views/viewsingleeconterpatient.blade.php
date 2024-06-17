@@ -8,8 +8,8 @@
     <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- site metas -->
-    <title>RHC EMR | Complains</title>
+    <!-- site metas --> 
+    <title>RHC EMR | Ecounter Note</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -35,9 +35,23 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
 </head>
+  <style>
+        .profile-header {
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+    </style>
 
 <body class="dashboard dashboard_1">
-    <div class="full_container">
+    <div class="full_container"> 
         <div class="inner_container">
             <!-- Sidebar  -->
              @include('components.sidenav')
@@ -112,7 +126,7 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>Welcome</h2>
+                                    <h2>Ecounter Note</h2>
                                 </div>
                             </div>
                         </div>
@@ -121,37 +135,170 @@
 
                         <div class="row column3">
                         </div>
-                        <div class="row column4 graph">
-                            <h4>Complains(Appointment)</h4>
-                           <table class="table table-striped">
-                              <thead>
-                                <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Full Name</th>
-                                  <th scope="col">Doctor Name</th>
-                                  <th scope="col">Patient Phone Number</th>
-                                  <th scope="col">Complains</th>
-                                  <th scope="col">Actions</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                            @foreach($data as $complains)
-                                <tr>
-                                  <th scope="row">{{ $complains->id }}</th>
-                                  <td>{{ $complains->name }}</td>
-                                  <td>{{ $complains->doctor_name}}</td>
-                                  <td>{{ $complains->phone_number }}</td>
-                                  <td>{{ $complains->complain }}</td>
-                                  <td>
-                                 <a style="display: inline-block; width: auto;" href="{{ url('viewsinglecomplain', $complains->id) }}">
-                                    <button class="btn btn-primary">View</button> 
-                                </a>
-                                  </td>
-                                </tr>
-                            @endforeach
-                              </tbody>
-                            </table>
-                        </div>
+                       <div class="container mt-4">
+					    <!-- Profile Header -->
+					    <!-- <div class="row">
+					        <div class="col-md-12">
+					            <div class="profile-header">
+					                <h1>{{ $patient->full_name }} Profile</h1>
+					                <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-avatar">
+					                <h3>{{ $patient->full_name }} </h3>
+					                <p>Email: {{ $patient->email }} </p>
+					            </div>
+					        </div>
+					    </div> -->
+
+		<!-- 			     <div class="col-md-6">
+					            <div class="card">
+					                <div class="card-header">
+					                    Patient Information
+					                </div>
+					                <div class="card-body">
+					                    <p><strong>Name:</strong> {{ $patient->full_name }} </p>
+					                    <p><strong>Email:</strong> {{ $patient->email }} </p>
+					                    <p><strong>Phone Number:</strong> {{ $patient->phone_number }} </p>
+					                    <p><strong>Address:</strong> {{ $patient->home_address }} </p>
+					                </div>
+					            </div>
+					        </div> -->
+
+					    <!-- Profile Information -->
+					     <!-- Display Success Message -->
+						    @if (session('status'))
+						        <div class="alert alert-success">
+						            {{ session('status') }}
+						        </div>
+						    @endif
+					  <form action="{{ route('addecounter.store') }}" method="POST">
+					    @csrf
+					    <!-- Hidden Fields for patent_id -->
+					     <input type="hidden" value="{{ old('id', $patient->id) }}" class="form-control" name="patient_id" required>
+					    <div class="row">
+					        <div class="col">
+					            <label>Full Name*</label>
+					            <input type="text" class="form-control" value="{{ old('full_name', $patient->full_name) }}" name="full_name" placeholder="Full Name" aria-label="Full name">
+					            <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
+					        </div>
+
+					        <div class="col">
+					            <label>Profile ID*</label>
+					            <input type="text" class="form-control" value="{{ old('patientid', $patient->patientID) }}" name="patientid" placeholder="Profile ID" aria-label="Profile ID">
+					            <x-input-error :messages="$errors->get('patientid')" class="mt-2" />
+					        </div>
+					    </div>
+
+					    <div class="row mt-2">
+					        <div class="col">
+					            <label>Ward*</label>
+					            <input type="text" placeholder="Ward" class="form-control" value="{{ old('ward', $patient->ward) }}" name="ward" aria-label="Ward" required>
+					            <x-input-error :messages="$errors->get('ward')" class="mt-2" />
+					        </div>
+
+					        <div class="col">
+					            <label>Unit*</label>
+					            <input type="text" placeholder="Unit" class="form-control" value="{{ old('unit', $patient->unit) }}" name="unit" aria-label="Unit" required>
+					            <x-input-error :messages="$errors->get('unit')" class="mt-2" />
+					        </div>
+					    </div>
+
+					    <div class="row mt-2">
+					        <div class="input-group">
+					            <span class="input-group-text">Consultant*</span>
+					            <textarea class="form-control" aria-label="Consultant" rows="4" name="consultant" required>{{ old('consultant', $patient->consultant) }}</textarea>
+					            <x-input-error :messages="$errors->get('consultant')" class="mt-2" />
+					        </div>
+					    </div>
+
+					    <div class="row mt-2">
+					        <div class="input-group">
+					            <span class="input-group-text">Medical Officer*</span>
+					            <textarea class="form-control" aria-label="Medical Officer" rows="4" name="medical_officer" required>{{ old('medical_officer', $patient->medical_officer) }}</textarea>
+					            <x-input-error :messages="$errors->get('medical_officer')" class="mt-2" />
+					        </div>
+					    </div>
+
+					    <div class="row mt-2">
+					        <div class="input-group">
+					            <span class="input-group-text">Presenting Complaint*</span>
+					            <textarea class="form-control" aria-label="Presenting Complaint" rows="4" name="presenting_complaint" required>{{ old('presenting_complaint', $patient->presenting_complaint) }}</textarea>
+					            <x-input-error :messages="$errors->get('presenting_complaint')" class="mt-2" />
+					        </div>
+					    </div>
+
+					    <div class="row mt-2">
+					        <div class="input-group">
+					            <span class="input-group-text">Physical Examination*</span>
+					            <textarea class="form-control" aria-label="Physical Examination" rows="4" name="physical_examination" required>{{ old('physical_examination', $patient->physical_examination) }}</textarea>
+					            <x-input-error :messages="$errors->get('physical_examination')" class="mt-2" />
+					        </div>
+					    </div>
+
+					    <div class="row mt-2">
+					        <div class="input-group">
+					            <span class="input-group-text">Clinic Diagnosis*</span>
+					            <textarea class="form-control" aria-label="Clinic Diagnosis" rows="4" name="clinic_diagnosis" required>{{ old('clinic_diagnosis', $patient->clinic_diagnosis) }}</textarea>
+					            <x-input-error :messages="$errors->get('clinic_diagnosis')" class="mt-2" />
+					        </div>
+					    </div>
+
+					    <div class="row mt-2">
+					        <div class="input-group">
+					            <span class="input-group-text">History Presenting Complaint*</span>
+					            <textarea class="form-control" aria-label="History Presenting Complaint" rows="4" name="history_presenting_complaint" required>{{ old('history_presenting_complaint', $patient->history_presenting_complaint) }}</textarea>
+					            <x-input-error :messages="$errors->get('history_presenting_complaint')" class="mt-2" />
+					        </div>
+					    </div>
+
+					    <div class="row mt-2">
+					        <div class="input-group">
+					            <span class="input-group-text">Plan*</span>
+					            <textarea class="form-control" aria-label="Plan" rows="4" name="plan" required>{{ old('plan', $patient->plan) }}</textarea>
+					            <x-input-error :messages="$errors->get('plan')" class="mt-2" />
+					        </div>
+					    </div>
+
+					    <div class="col-12 mt-3">
+					        <button class="btn btn-primary" type="submit">Add To Record</button>
+					    </div>
+					</form>
+					      
+					   <div class="container mt-3">
+					    @foreach($ecounters as $ecounter)
+					    <div class="row">
+					        <div class="col-md-6">
+					            <div class="card">
+					                <div class="card-header">
+					                    Medical Information
+					                </div>
+					                <div class="card-body">
+					                    <p><strong>Unit:</strong> {{ $ecounter->unit }} </p>
+					                    <p><strong>Ward:</strong> <span style="color: green;">Active</span></p>
+					                    <p><strong>Consultant:</strong> <a href="#">{{ $ecounter->consultant }} </a></p>
+					                    <p><strong>Medical Officer:</strong> <a href="#">{{ $ecounter->medical_officer }} </a></p>
+					                    <p><strong>Presenting Complaint:</strong> <a href="#">{{ $ecounter->presenting_complaint }} </a></p>
+					                
+					                </div>
+					            </div>
+					        </div>
+					        <div class="col-md-6">
+					            <div class="card">
+					                <div class="card-header">
+					                    Additional Information
+					                </div>
+					                <div class="card-body">
+					                        <p><strong>Physical Examination:</strong> <a href="#">{{ $ecounter->physical_examination }} </a></p>
+					                    <p><strong>Clinic Diagnosis:</strong> <a href="#">{{ $ecounter->clinic_diagnosis }} </a></p>
+					                    <p><strong>History Presenting Complaint:</strong> <a href="#">{{ $ecounter->history_presenting_complaint }} </a></p>
+					                    <p><strong>Plan:</strong> <a href="#">{{ $ecounter->plan }} </a></p>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					    @endforeach
+					</div>
+
+					   
+
                     </div>
                     <!-- footer -->
                     <div class="container-fluid">

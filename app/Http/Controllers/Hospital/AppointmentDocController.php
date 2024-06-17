@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers\Hospital;
 
+use App\Models\Appointmentdoc;  
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
 use App\Mail\AppoinmentMail;
-use App\Models\Appointmentdoc;  
-
+use Illuminate\Support\Facades\Redirect;
 
 class AppointmentDocController extends Controller
+{   public function show(Request $request)
 {
-      public function store(Request $request) : RedirectResponse {
+    $status = $request->session()->get('status');
+}
+
+
+    public function store(Request $request) : RedirectResponse {
         $request->validate([
+            'doctor_name' => ['nullable', 'string', 'max:255'],
+            'doctor_email' => ['nullable', 'string', 'max:255'],
+            'doctor_special' => ['nullable', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'max:55'], 
             'home_address' => ['required', 'string', 'max:255'],
@@ -25,11 +33,11 @@ class AppointmentDocController extends Controller
         ]);
 
 
-        $app = Appointment::create([
-            'name' => $request->name,
+        $app = Appointmentdoc::create([
             'doctor_name' => $request->doctor_name,
             'doctor_email' => $request->doctor_email,
-            'specialization' => $request->specialization,
+            'doctor_special' => $request->doctor_special,
+            'name' => $request->name,
             'phone_number' => $request->phone_number,
             'home_address' => $request->home_address,
             'state_of_residence' => $request->state_of_residence,
