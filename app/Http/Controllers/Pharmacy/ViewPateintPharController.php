@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Hospital;
+namespace App\Http\Controllers\Pharmacy;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AddPatient; 
 
-
-class ShowPatientController extends Controller
+class ViewPateintPharController extends Controller
 {
-    public function showpatients(Request $request)
+   public function show(Request $request)
     {
         $patients = AddPatient::orderBy('created_at', 'desc')->get();
         
-        return view('patients', compact('patients'));
+        return view('pharmacy', compact('patients'));
     }
 }
+

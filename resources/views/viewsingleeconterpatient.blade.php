@@ -135,7 +135,7 @@
 
                         <div class="row column3">
                         </div>
-                       <div class="container mt-4">
+                       <div class="col-12 mt-4">
 					    <!-- Profile Header -->
 					    <!-- <div class="row">
 					        <div class="col-md-12">
@@ -262,9 +262,10 @@
 					    </div>
 					</form>
 					      
-					   <div class="container mt-3">
+					   <div class="col-12 mt-3">
 					    @foreach($ecounters as $ecounter)
-					    <div class="row">
+					    <hr>
+					    <div class="row mt-4">
 					        <div class="col-md-6">
 					            <div class="card">
 					                <div class="card-header">

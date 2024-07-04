@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RHC EMR | Complains</title>
+    <title>RHC EMR | Message Staff</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -20,11 +20,11 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.min.css') }}" />
     <!-- site css -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <!-- responsive css -->
+    <!-- responsive css --> 
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
-    <!-- color css -->
+    <!-- color css --> 
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}" />
-    <!-- select bootstrap --> 
+    <!-- select bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}" />
     <!-- scrollbar css -->
     <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" />
@@ -40,7 +40,7 @@
     <div class="full_container">
         <div class="inner_container">
             <!-- Sidebar  -->
-             @include('components.sidenav')
+            @include('components.sidenav')
             <!-- end sidebar -->
             <!-- right content -->
             <div id="content">
@@ -79,7 +79,7 @@
                                                     class="img-responsive rounded-circle"
                                                    src="{{ asset('storage/' . Auth::user()->avatar) }}"
                                                     alt="#" /><span
-                                                    class="name_user">{{ Auth::user()->first_name }}<svg
+                                                    class="name_user">{{ Auth::user()->first_name }} <svg
                                                         xmlns="http://www.w3.org/2000/svg" width="1.5em"
                                                         height="1.5em" viewBox="0 0 24 24">
                                                         <path fill="white"
@@ -112,7 +112,7 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>Welcome</h2>
+                                    <h2>Welcome {{ Auth::user()->first_name }}</h2>
                                 </div>
                             </div>
                         </div>
@@ -121,90 +121,67 @@
 
                         <div class="row column3">
                         </div>
-                        	 <!-- Display Success Message -->
-						    @if (session('status'))
-						        <div class="alert alert-success">
-						            {{ session('status') }}
-						        </div>
-						    @endif
-							<form action="{{ route('addpatient.store') }}" method="POST" enctype="multipart/form-data">
-							    @csrf
-							    <!-- Hidden Fields for by_who_name and by_who_email -->
-							    <input type="hidden" name="by_who_name" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}" class="form-control">
-							     <x-input-error :messages="$errors->get('by_who_name')" class="mt-2" />
-							    <input type="hidden" name="by_who_email" value="{{ Auth::user()->email }}" class="form-control">
-							     <x-input-error :messages="$errors->get('by_who_email')" class="mt-2" />
-							    <input type="hidden" value="null" name="time_send">
-							     <x-input-error :messages="$errors->get('time_send')" class="mt-2" />
-							     	<input type="hidden" class="form-control" name="state_of_residence" value="{{ old('state_of_residence', $appointment->state_of_residence) }}" placeholder="State of Residence" aria-label="State of Residence">
-							             <x-input-error :messages="$errors->get('state_of_residence')" class="mt-2" />
-							    <div class="row">
-							        <div class="col">
-							            <label>Full Name*</label>
-							            <input type="text" class="form-control" value="{{ old('full_name', $appointment->name) }}" name="full_name" placeholder="Full Name" aria-label="Full name">
-							             <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
-							        </div>
+                        <div class="row column4 graph">
+                            <div class="col-md-6 margin_bottom_30">
+                                <div class="dash_blog">
+                                    <div class="dash_blog_inner">
+                                        <div class="dash_head">
+                                            <h3><span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M2.25 5A2.75 2.75 0 0 1 5 2.25h14A2.75 2.75 0 0 1 21.75 5v10A2.75 2.75 0 0 1 19 17.75H7.961c-.38 0-.739.173-.976.47l-2.33 2.913c-.798.996-2.405.433-2.405-.843z" clip-rule="evenodd"/></svg>
+                                                    |Message {{ $staffinfo->first_name }}
+                                                    @if($staffinfo->email== Auth::User()->email )
+                                                        (YOU)
+                                                    @endif
+                                                     </span><span class="plus_green_bt">
+                                                     </span></h3>
+                                        </div>
+                                        <div class="list_cont">
+                                            <p>Send Message to {{ $staffinfo->first_name }}
+                                                  @if($staffinfo->email== Auth::User()->email )
+                                                        (Yourself)
+                                                  @endif
+                                            </p>
+                                        </div>
+                                        <div class="task_list_main">
+                                            <div class="col-md-6">
+                                                <form class="form-control">
+                                                    <input type="text" class="form-control" placeholder="Send Message" name="sendmsg">
+                                                    <button class="btn btn-danger" type="submit">Send</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="dash_blog">
+                                    <div class="dash_blog_inner">
+                                        <div class="dash_head">
+                                            <h3><span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8m-8 4h6m4-9a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-5l-5 3v-3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z"/></svg>
+                                                    Last Messages</span><span class="plus_green_bt"><a
+                                                        href="#" _blank>
+                                                         <img height="50" width="50" style="border-radius: 50%" src="{{ asset('storage/' . $staffinfo->avatar) }}">
+                                                        </a></span></h3>
+                                        </div>
+                                        <div class="list_cont">
+                                            <p>Last Messages</p>
+                                        </div>
+                                        <div class="msg_list_main">
+                                            <ul class="msg_list">
 
-							        <div class="col">
-							            <label>Email*</label>
-							            <input type="email" value="{{ old('email', $appointment->email) }}" class="form-control" name="email" placeholder="Email" aria-label="Email">
-							             <x-input-error :messages="$errors->get('email')" class="mt-2" />
-							        </div>
-							    </div>
-
-							    <div class="row mt-2">
-							        <div class="col">
-							            <label>Phone Number*</label>
-							            <input type="text" class="form-control" value="{{ old('phone_number', $appointment->phone_number) }}" name="phone_number" placeholder="Phone Number" aria-label="Phone Number">
-							             <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
-							        </div>
-							        <div class="col">
-							            <label>Home Address*</label>
-							            <input type="text" class="form-control" name="home_address" value="{{ old('home_address', $appointment->home_address) }}" placeholder="Home Address" aria-label="Home Address">
-							             <x-input-error :messages="$errors->get('home_address')" class="mt-2" />
-							        </div>
-							    </div>
-
-							    <div class="row mt-2">
-							        <div class="col">
-							            <label>Set Password for User*</label>
-							            <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password">
-							             <x-input-error :messages="$errors->get('password')" class="mt-2" />
-							        </div>
-							          <div class="col">
-						                <label>Confirm Password*</label>
-						                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" aria-label="Confirm Password" required>
-						            </div>
-							       
-							    </div>
-
-							    <div class="row mt-2">
-							        <div class="col">
-							            <label>Date of Birth (Can be Applied Later)</label>
-							            <input type="text" value="{{ old('date_of_birth', 'nill') }}" class="form-control" name="date_of_birth" aria-label="Date of Birth">
-							        </div>
-							        <div class="col">
-							            <label>Profile Picture (Can be Applied Later)</label>
-							            <input type="file" class="form-control" name="avatar" aria-label="Avatar">
-							        </div>
-							    </div>
-
-							    <div class="row mt-2">
-							        <div class="input-group">
-							            <span class="input-group-text">Send Message to Patient*</span>
-							            <textarea class="form-control" aria-label="With textarea" name="message_sent" required>{{ old('message_sent') }}</textarea>
-							        </div>
-							    </div>
-
-							    <div class="col-12 mt-3">
-							        <button class="btn btn-primary" type="submit">Add and Send Message</button>
-							    </div>
-							</form>
+                                            </ul>
+                                        </div>
+                                        <div class="read_more">
+                                            <div class="center"><a class="main_bt read_bt" href="#">Read
+                                                    More</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
-                   
-                     <!-- footer -->
+                    <!-- footer -->
                     <div class="container-fluid">
                         <div class="footer">
                             <p>Copyright © 2024 Developed by Azriel Technologies All rights reserved.<br>
@@ -290,5 +267,4 @@
     <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
 
 </body>
-
 </html>

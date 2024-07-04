@@ -34,7 +34,7 @@ class AddPatientController extends Controller
         // Generating unique_id
         $firstWord = strtok($request->full_name, ' ');
         $randomNumber = rand(1000, 9999);
-        $patientID = '@' . $firstWord . $randomNumber;
+        $patientID = '@' . $firstWord . $randomNumber; 
 
         // Handle avatar upload and resizing
         if ($request->hasFile('avatar')) {
@@ -79,7 +79,7 @@ class AddPatientController extends Controller
             'password' => $hashedPassword,  // Use the hashed password
         ]);
 
-        Mail::to($add->email)->send(new AddPatientMail($add));
+        // Mail::to($add->email)->send(new AddPatientMail($add));
 
         return redirect()->back()->with('status', 'Patient Succesfully Added');
     }

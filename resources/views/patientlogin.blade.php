@@ -35,13 +35,13 @@
               <h3>Login <strong></strong></h3>
              <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
               </div>
-             <form method="POST" action="{{ route('login') }}">
+             <form method="POST" action="{{ route('loginpatient') }}">
              @csrf
 
                 <div class="form-group first">
-                  <label for="username">Email</label>
-                  <input type="email"  name="email" class="form-control" placeholder="your-email@gmail.com" id="username">
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                  <label for="patientid">Patient ID</label>
+                  <input type="text"  name="patientid" class="form-control" placeholder="PatientID" id="patientid">
+                    <x-input-error :messages="$errors->get('patientid')" class="mt-2" />
                 </div>
                 <div class="form-group last mb-3">
                   <label for="password">Password</label>
@@ -51,8 +51,8 @@
                 
                 <div class="d-sm-flex mb-5 align-items-center">
                   <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
-                    <input type="checkbox"  checked="checked"/>
-                    <div class="control__indicator" style="background: darkblue;"></div>
+                    <input type="checkbox" checked="checked"/>
+                    <div class="control__indicator"></div>
                   </label>
                   <span class="ml-auto">
                         @if (Route::has('password.request'))
@@ -63,7 +63,7 @@
                   </span> 
                 </div>
 
-                <input type="submit" style="background: darkblue; border: 1px solid blue;" value="Log In" class="btn btn-block btn-primary">
+                <input type="submit" value="Log In" class="btn btn-block btn-primary">
 
               </form>
             </div>

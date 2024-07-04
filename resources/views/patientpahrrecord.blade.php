@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RHC EMR | Complains</title>
+    <title>RHC EMR | Pharmacy Records</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -18,7 +18,7 @@
     <!-- bootstrap css -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.min.css') }}" />
-    <!-- site css -->
+    <!-- site css --> 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- responsive css -->
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
@@ -30,11 +30,26 @@
     <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" />
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
 </head>
+  <style>
+        .profile-header {
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+    </style>
 
 <body class="dashboard dashboard_1">
     <div class="full_container">
@@ -79,7 +94,7 @@
                                                     class="img-responsive rounded-circle"
                                                    src="{{ asset('storage/' . Auth::user()->avatar) }}"
                                                     alt="#" /><span
-                                                    class="name_user">{{ Auth::user()->first_name }}<svg
+                                                    class="name_user">{{ Auth::user()->first_name }} <svg
                                                         xmlns="http://www.w3.org/2000/svg" width="1.5em"
                                                         height="1.5em" viewBox="0 0 24 24">
                                                         <path fill="white"
@@ -117,94 +132,114 @@
                             </div>
                         </div>
                         <!-- end welcome -->
+                           @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
 
 
                         <div class="row column3">
                         </div>
-                        	 <!-- Display Success Message -->
-						    @if (session('status'))
-						        <div class="alert alert-success">
-						            {{ session('status') }}
-						        </div>
-						    @endif
-							<form action="{{ route('addpatient.store') }}" method="POST" enctype="multipart/form-data">
-							    @csrf
-							    <!-- Hidden Fields for by_who_name and by_who_email -->
-							    <input type="hidden" name="by_who_name" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}" class="form-control">
-							     <x-input-error :messages="$errors->get('by_who_name')" class="mt-2" />
-							    <input type="hidden" name="by_who_email" value="{{ Auth::user()->email }}" class="form-control">
-							     <x-input-error :messages="$errors->get('by_who_email')" class="mt-2" />
-							    <input type="hidden" value="null" name="time_send">
-							     <x-input-error :messages="$errors->get('time_send')" class="mt-2" />
-							     	<input type="hidden" class="form-control" name="state_of_residence" value="{{ old('state_of_residence', $appointment->state_of_residence) }}" placeholder="State of Residence" aria-label="State of Residence">
-							             <x-input-error :messages="$errors->get('state_of_residence')" class="mt-2" />
-							    <div class="row">
-							        <div class="col">
-							            <label>Full Name*</label>
-							            <input type="text" class="form-control" value="{{ old('full_name', $appointment->name) }}" name="full_name" placeholder="Full Name" aria-label="Full name">
-							             <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
-							        </div>
+                       <div class="container mt-4">
+                        <!-- Profile Header -->
+                        <!-- <div class="row">
+                            <div class="col-md-12">
+                                <div class="profile-header">
+                                    <h1>{{ $patient->full_name }} Profile</h1>
+                                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-avatar">
+                                    <h3>{{ $patient->full_name }} </h3>
+                                    <p>Email: {{ $patient->email }} </p>
+                                </div>
+                            </div>
+                        </div> -->
 
-							        <div class="col">
-							            <label>Email*</label>
-							            <input type="email" value="{{ old('email', $appointment->email) }}" class="form-control" name="email" placeholder="Email" aria-label="Email">
-							             <x-input-error :messages="$errors->get('email')" class="mt-2" />
-							        </div>
-							    </div>
+                        <!-- Profile Information -->
+                        <div class="col mt-4">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Personal Information
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Name:</strong> {{ $patient->full_name }} </p>
+                                        <p><strong>Patient ID:</strong> {{ $patient->patientID }} </p>
+                                        <p><strong>Phone Number:</strong> {{ $patient->phone_number }} </p>
+                                    </div>
+                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add New Record</button>
+                                </div>
 
-							    <div class="row mt-2">
-							        <div class="col">
-							            <label>Phone Number*</label>
-							            <input type="text" class="form-control" value="{{ old('phone_number', $appointment->phone_number) }}" name="phone_number" placeholder="Phone Number" aria-label="Phone Number">
-							             <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
-							        </div>
-							        <div class="col">
-							            <label>Home Address*</label>
-							            <input type="text" class="form-control" name="home_address" value="{{ old('home_address', $appointment->home_address) }}" placeholder="Home Address" aria-label="Home Address">
-							             <x-input-error :messages="$errors->get('home_address')" class="mt-2" />
-							        </div>
-							    </div>
+                                <!---------------This is the model box to Add New Record---------->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Record For {{ $patient->full_name }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form action="{{ route('patientpahrrecord.store') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="doctors_name" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
+                                            <input type="hidden" name="doctors_email" value="{{ Auth::user()->email }}">
+                                            <input type="hidden" name="patent_name" value="{{ $patient->full_name }}">
+                                            <input type="hidden" name="patientid" value="{{ $patient->patientID }}">
+                                            <input type="hidden" name="patient_id" value="{{ $patient->id }}">
+                                          <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Drugs:</label>
+                                            <input type="text" name="drugs" class="form-control" id="recipient-name" required>
+                                            <x-input-error :messages="$errors->get('drugs')" class="mt-2" />
+                                          </div>
+                                          <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Doctors Comment:</label>
+                                            <textarea class="form-control" name="doctors_comments" id="message-text" required></textarea>
+                                            <x-input-error :messages="$errors->get('doctors_comments')" class="mt-2" />
+                                          </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Add Record</button>
+                                      </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
 
-							    <div class="row mt-2">
-							        <div class="col">
-							            <label>Set Password for User*</label>
-							            <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password">
-							             <x-input-error :messages="$errors->get('password')" class="mt-2" />
-							        </div>
-							          <div class="col">
-						                <label>Confirm Password*</label>
-						                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" aria-label="Confirm Password" required>
-						            </div>
-							       
-							    </div>
+                            </div>
+                            <div class="col-md-10 mt-4">
+                                <table class="table table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Drugs</th>
+                                      <th scope="col">Doctor's Name</th>
+                                      <th scope="col">Doctor's Comment</th>
+                                      <th scope="col">Date and Time</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                @forelse($pharmacyrecords as $pharmacyrecord)
+                                    <tr>
+                                      <th scope="row">{{ $pharmacyrecord->id }}</th>
+                                      <td>{{ $pharmacyrecord->drugs }}</td>
+                                      <td>{{ $pharmacyrecord->doctors_name }}</td>
+                                      <td>{{ $pharmacyrecord->doctors_comments }}</td>
+                                      <td>{{ $pharmacyrecord->created_at }}</td>
+                                      <!-- <td><button class="btn btn-primary">Edit</button></td> -->
+                                    </tr>
+                                     @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">No records yet</td>
+                                        </tr>
+                                @endforelse
+                                  </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-							    <div class="row mt-2">
-							        <div class="col">
-							            <label>Date of Birth (Can be Applied Later)</label>
-							            <input type="text" value="{{ old('date_of_birth', 'nill') }}" class="form-control" name="date_of_birth" aria-label="Date of Birth">
-							        </div>
-							        <div class="col">
-							            <label>Profile Picture (Can be Applied Later)</label>
-							            <input type="file" class="form-control" name="avatar" aria-label="Avatar">
-							        </div>
-							    </div>
-
-							    <div class="row mt-2">
-							        <div class="input-group">
-							            <span class="input-group-text">Send Message to Patient*</span>
-							            <textarea class="form-control" aria-label="With textarea" name="message_sent" required>{{ old('message_sent') }}</textarea>
-							        </div>
-							    </div>
-
-							    <div class="col-12 mt-3">
-							        <button class="btn btn-primary" type="submit">Add and Send Message</button>
-							    </div>
-							</form>
+                    
                     </div>
-
-
-                   
-                     <!-- footer -->
+                    <!-- footer -->
                     <div class="container-fluid">
                         <div class="footer">
                             <p>Copyright © 2024 Developed by Azriel Technologies All rights reserved.<br>
@@ -288,7 +323,7 @@
     <!-- custom js -->
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

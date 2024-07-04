@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RHC EMR | Complains</title>
+    <title>RHC EMR | Patients</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -79,7 +79,7 @@
                                                     class="img-responsive rounded-circle"
                                                    src="{{ asset('storage/' . Auth::user()->avatar) }}"
                                                     alt="#" /><span
-                                                    class="name_user">{{ Auth::user()->first_name }}<svg
+                                                    class="name_user">{{ Auth::user()->first_name }} <svg
                                                         xmlns="http://www.w3.org/2000/svg" width="1.5em"
                                                         height="1.5em" viewBox="0 0 24 24">
                                                         <path fill="white"
@@ -121,90 +121,39 @@
 
                         <div class="row column3">
                         </div>
-                        	 <!-- Display Success Message -->
-						    @if (session('status'))
-						        <div class="alert alert-success">
-						            {{ session('status') }}
-						        </div>
-						    @endif
-							<form action="{{ route('addpatient.store') }}" method="POST" enctype="multipart/form-data">
-							    @csrf
-							    <!-- Hidden Fields for by_who_name and by_who_email -->
-							    <input type="hidden" name="by_who_name" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}" class="form-control">
-							     <x-input-error :messages="$errors->get('by_who_name')" class="mt-2" />
-							    <input type="hidden" name="by_who_email" value="{{ Auth::user()->email }}" class="form-control">
-							     <x-input-error :messages="$errors->get('by_who_email')" class="mt-2" />
-							    <input type="hidden" value="null" name="time_send">
-							     <x-input-error :messages="$errors->get('time_send')" class="mt-2" />
-							     	<input type="hidden" class="form-control" name="state_of_residence" value="{{ old('state_of_residence', $appointment->state_of_residence) }}" placeholder="State of Residence" aria-label="State of Residence">
-							             <x-input-error :messages="$errors->get('state_of_residence')" class="mt-2" />
-							    <div class="row">
-							        <div class="col">
-							            <label>Full Name*</label>
-							            <input type="text" class="form-control" value="{{ old('full_name', $appointment->name) }}" name="full_name" placeholder="Full Name" aria-label="Full name">
-							             <x-input-error :messages="$errors->get('full_name')" class="mt-2" />
-							        </div>
-
-							        <div class="col">
-							            <label>Email*</label>
-							            <input type="email" value="{{ old('email', $appointment->email) }}" class="form-control" name="email" placeholder="Email" aria-label="Email">
-							             <x-input-error :messages="$errors->get('email')" class="mt-2" />
-							        </div>
-							    </div>
-
-							    <div class="row mt-2">
-							        <div class="col">
-							            <label>Phone Number*</label>
-							            <input type="text" class="form-control" value="{{ old('phone_number', $appointment->phone_number) }}" name="phone_number" placeholder="Phone Number" aria-label="Phone Number">
-							             <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
-							        </div>
-							        <div class="col">
-							            <label>Home Address*</label>
-							            <input type="text" class="form-control" name="home_address" value="{{ old('home_address', $appointment->home_address) }}" placeholder="Home Address" aria-label="Home Address">
-							             <x-input-error :messages="$errors->get('home_address')" class="mt-2" />
-							        </div>
-							    </div>
-
-							    <div class="row mt-2">
-							        <div class="col">
-							            <label>Set Password for User*</label>
-							            <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password">
-							             <x-input-error :messages="$errors->get('password')" class="mt-2" />
-							        </div>
-							          <div class="col">
-						                <label>Confirm Password*</label>
-						                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" aria-label="Confirm Password" required>
-						            </div>
-							       
-							    </div>
-
-							    <div class="row mt-2">
-							        <div class="col">
-							            <label>Date of Birth (Can be Applied Later)</label>
-							            <input type="text" value="{{ old('date_of_birth', 'nill') }}" class="form-control" name="date_of_birth" aria-label="Date of Birth">
-							        </div>
-							        <div class="col">
-							            <label>Profile Picture (Can be Applied Later)</label>
-							            <input type="file" class="form-control" name="avatar" aria-label="Avatar">
-							        </div>
-							    </div>
-
-							    <div class="row mt-2">
-							        <div class="input-group">
-							            <span class="input-group-text">Send Message to Patient*</span>
-							            <textarea class="form-control" aria-label="With textarea" name="message_sent" required>{{ old('message_sent') }}</textarea>
-							        </div>
-							    </div>
-
-							    <div class="col-12 mt-3">
-							        <button class="btn btn-primary" type="submit">Add and Send Message</button>
-							    </div>
-							</form>
+                        <div class="row column4 graph">
+                            <h4>View All Patients Account</h4>
+                           <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Patient ID</th>
+                                  <th scope="col">Full Name</th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Phone Number</th>
+                                  <th scope="col">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                            @foreach($patients as $patient)
+                                <tr>
+                                  <th scope="row">{{ $patient->id }}</th>
+                                  <td>{{ $patient->patientID }}</td>
+                                  <td>{{ $patient->full_name }}</td>
+                                  <td>{{ $patient->email}}</td>
+                                  <td>{{ $patient-> phone_number}}</td>
+                                  <td>
+                                 <a style="display: inline-block; width: auto;" href="{{ url('viewsinglepatient', $patient->id) }}">
+                                    <button class="btn btn-primary">View</button> 
+                                </a>
+                                  </td>
+                                </tr>
+                            @endforeach
+                              </tbody>
+                            </table>
+                        </div>
                     </div>
-
-
-                   
-                     <!-- footer -->
+                    <!-- footer -->
                     <div class="container-fluid">
                         <div class="footer">
                             <p>Copyright © 2024 Developed by Azriel Technologies All rights reserved.<br>

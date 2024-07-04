@@ -31,6 +31,9 @@
                                         d="M13 9V3h8v6zM3 13V3h8v10zm10 8V11h8v10zM3 21v-6h8v6z" />
                                 </svg> <span>Dashboard</span></a>
                         </li>
+                        <li><a href="{{ url('message') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="m22.045 7.77l-.05 6.3a4.679 4.679 0 0 1-.36 1.81a4.688 4.688 0 0 1-2.55 2.55a4.68 4.68 0 0 1-1.81.36h-2.33l-2 2a1.27 1.27 0 0 1-.44.3a1.33 1.33 0 0 1-.55.12a1.44 1.44 0 0 1-.55-.11a1.39 1.39 0 0 1-.46-.33l-1.95-1.94h-2.33a4.71 4.71 0 0 1-4.71-4.72v-6.6a4.71 4.71 0 0 1 1.38-3.34a4.78 4.78 0 0 1 3.33-1.38h10.66a4.71 4.71 0 0 1 4.72 4.72z"/></svg>
+                            <span>Message</span></a></li>
                           @if(Auth::user()->role == 0 || Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 1)
                         <li><a href="{{ url('econter') }}"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em"
                                     height="1.5em" viewBox="0 0 36 36">
@@ -77,14 +80,16 @@
                                 </svg>
                                 <span>View All
                                     Patients</span></a></li>
-                        <li><a href="ecounter.php?patientid=">
+                        <!--  @if(Auth::user()->role == 0 || Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 1)
+                        <li><a href="{{ url('account') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M10.5 8a3 3 0 1 0 0 6a3 3 0 0 0 0-6M9 11a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0M2 7.25A2.25 2.25 0 0 1 4.25 5h12.5A2.25 2.25 0 0 1 19 7.25v7.5A2.25 2.25 0 0 1 16.75 17H4.25A2.25 2.25 0 0 1 2 14.75zm2.25-.75a.75.75 0 0 0-.75.75V8h.75A.75.75 0 0 0 5 7.25V6.5zm-.75 6h.75a2.25 2.25 0 0 1 2.25 2.25v.75h8v-.75a2.25 2.25 0 0 1 2.25-2.25h.75v-3h-.75a2.25 2.25 0 0 1-2.25-2.25V6.5h-8v.75A2.25 2.25 0 0 1 4.25 9.5H3.5zm14-4.5v-.75a.75.75 0 0 0-.75-.75H16v.75c0 .414.336.75.75.75zm0 6h-.75a.75.75 0 0 0-.75.75v.75h.75a.75.75 0 0 0 .75-.75zm-14 .75c0 .414.336.75.75.75H5v-.75a.75.75 0 0 0-.75-.75H3.5zm.901 3.75A3 3 0 0 0 7 20h10.25A4.75 4.75 0 0 0 22 15.25V10a3 3 0 0 0-1.5-2.599v7.849a3.25 3.25 0 0 1-3.25 3.25z" />
                                 </svg>
                                 <span>Account</span></a></li>
-                        <li><a href="ecounter.php?patientid=">
+                             @endif -->
+                        <li><a href="{{ url('pharmacy') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                     viewBox="0 0 24 24">
                                     <g fill="none" stroke="currentColor" stroke-width="1.5">
@@ -95,7 +100,8 @@
                                     </g>
                                 </svg>
                                 <span>Pharmacy</span></a></li>
-                        <li><a href="ecounter.php?patientid=">
+                         <!--  @if(Auth::user()->role == 5 || Auth::user()->role == 1)
+                        <li><a href="{{ url('payment') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
@@ -103,9 +109,7 @@
                                 </svg>
                                 <span>Make
                                     Payments</span></a></li>
-
-
-
+                                    @endif -->
                         <li class="active">
                             <a href="#additional_page" data-toggle="collapse" aria-expanded="false"
                                 class="dropdown-toggle">

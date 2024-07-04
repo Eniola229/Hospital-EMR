@@ -58,7 +58,7 @@
                                         src="https://www.rccghealthcentre.com/assets/images/rccg-logo-121x121.png"
                                         alt="#" /></a>
                             </div>
-                            <div class="right_topbar">
+                            <div class="right_topbar"> 
                                 <div class="icon_info">
                                     <ul>
                                         <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em"
@@ -121,7 +121,7 @@
 
                         <div class="row column3">
                         </div>
-                        <div class="row column4 graph">
+                        <div class="table-responsive table-wrapper">
                             <h4>All Patients</h4>
                            <table class="table table-striped">
                               <thead>
@@ -237,6 +237,8 @@
     <!-- custom js -->
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
+
+    
 
 </body>
 

@@ -90,57 +90,48 @@
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-
-                <form action="{{ route('appointmentdoc.store') }}" method="POST" class="php-email-form">
+ 
+                <form action="{{ route('appointmentdoc.store') }}" method="POST" class="php-email-form"> 
                     @csrf
 
-                    <input type="hidden" value="{{ $doctor->first_name}} {{ $doctor->last_name}}" name="doctor_name" class="form-control" id="doctor_name" >
+                     <input type="hidden" value="{{ $doctor->first_name}} {{ $doctor->last_name}}" name="doctor_name" class="form-control" id="doctor_name" >
                     <input type="hidden" name="doctor_email" value="{{ $doctor->email}}" class="form-control" id="doctor_email" >
                     <input type="hidden" name="doctor_special" value="{{ $doctor->specialization}}" class="form-control" id="doctor_special" >
 
                     <div class="row">
                         <div class="col-md-4 form-group">
-                            <input type="text" name="name" class="form-control" id="name"
-                                placeholder="Full Name" required>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Full Name" required>
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
                         <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <input type="email" class="form-control" name="email" id="email"
-                                placeholder="Email" required="">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
-
                         <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <input type="text" class="form-control" name="home_address" id="Home Adress"
-                                placeholder="Home Adress" required="">
+                            <input type="text" class="form-control" name="home_address" id="home_address" placeholder="Home Address" required>
                             <x-input-error :messages="$errors->get('home_address')" class="mt-2" />
                         </div>
-
                         <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <input type="text" class="form-control" name="state_of_residence"
-                                id="State of Residence" placeholder="State of Residence" required="">
+                            <input type="text" class="form-control" name="state_of_residence" id="state_of_residence" placeholder="State of Residence" required>
                             <x-input-error :messages="$errors->get('state_of_residence')" class="mt-2" />
                         </div>
-
                         <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <input type="tel" class="form-control" name="phone_number" id="phone"
-                                placeholder="Phone Number" required="">
+                            <input type="tel" class="form-control" name="phone_number" id="phone_number" placeholder="Phone Number" required>
                             <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
                         </div>
-
-                     <div class="col-md-4 form-group mt-3">
-                            <input type="datetime-local" name="a_date" class="form-control datepicker"
-                                id="date" placeholder="Appointment Date" required="">
+                        <div class="col-md-4 form-group mt-3">
+                            <input type="datetime-local" name="a_date" class="form-control datepicker" id="a_date" placeholder="Appointment Date" required>
                             <x-input-error :messages="$errors->get('a_date')" class="mt-2" />
                         </div>
-                    </div>
-                    <div class="row">
-       
-
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="complain" rows="5" placeholder="Complain"></textarea>
+                        <div class="col-md-4 form-group mt-3">
+                            <input type="text" name="department" class="form-control" id="department" placeholder="Department" required>
+                            <x-input-error :messages="$errors->get('department')" class="mt-2" />
+                        </div>
+                        <div class="col-md-4 form-group mt-3">
+                            <textarea name="complain" class="form-control" id="complain" placeholder="Complain" required></textarea>
                             <x-input-error :messages="$errors->get('complain')" class="mt-2" />
                         </div>
+                    </div>
                         <div class="mb-3">
                             <div class="loading">Loading</div>
                             <div class="error-message"></div>

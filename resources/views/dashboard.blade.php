@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- responsive css --> 
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
-    <!-- color css -->
+    <!-- color css --> 
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}" />

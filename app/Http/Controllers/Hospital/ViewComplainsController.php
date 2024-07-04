@@ -11,8 +11,9 @@ class ViewComplainsController extends Controller
 {
     public function showcomplains(Request $request)
     {
-        $data = Appointmentdoc::all();
         
+        $data = Appointmentdoc::orderBy('created_at', 'desc')->get();
+
         return view('complains', compact('data'));
     }
 } 

@@ -150,7 +150,7 @@
                                   <td>{{ $complain->department }}</td>
                                   <td>{{ $complain->complain }}</td>
                                   <td>
-                                    <a style="display: inline-block; width: auto;" href="{{ url('addtopatientrecord', $patient->id) }}">
+                                    <a style="display: inline-block; width: auto;" href="{{ url('addtopatientrecord', $complain->id) }}">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                          Add to Patient Record
                                         </button>
