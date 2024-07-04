@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <!-- site icon -->
     <link rel="icon" href="images/fevicon.png" type="image/png" />
-    <!-- bootstrap css -->
+    <!-- bootstrap css --> 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.min.css') }}" />
     <!-- site css -->
@@ -30,6 +30,11 @@
     <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" />
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/notifications.css') }}" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -163,9 +168,65 @@
                                             <p>General Notifications/Messages</p>
                                         </div>
                                         <div class="msg_list_main">
-                                            <ul class="msg_list">
+                                    <div class="list-group">
+                                        <!---card starts here --->
 
-                                            </ul>
+                                    @if($refers->isEmpty())
+                                    <p>No Message Yet</p>
+                                @else
+                                    <div class="list-group">
+                                        @foreach($refers as $refer)
+                                        <a href="">
+                                            <div class="card notification-card">
+                                                <div class="card-body">
+                                                    <div class="notification-header">
+                                                        <div class="notification-content">
+                                                            <i class="fas fa-envelope notification-icon text-primary"></i>
+                                                            <div>
+                                                                <h5 class="card-title mb-1">Message from {{ $refer->refer_from_name }}</h5>
+                                                                <p class="card-text mb-0">{{ $refer->message_sent }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <small class="notification-time">{{ $refer->created_at->diffForHumans() }}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        @endforeach
+                                    </div>
+                                @endif
+
+                        <!--             <div class="card notification-card">
+                                        <div class="card-body">
+                                            <div class="notification-header">
+                                                <div class="notification-content">
+                                                    <i class="fas fa-bell notification-icon text-warning"></i>
+                                                    <div>
+                                                        <h5 class="card-title mb-1">System Alert</h5>
+                                                        <p class="card-text mb-0">Your account will expire in 3 days.</p>
+                                                    </div>
+                                                </div>
+                                                <small class="notification-time">10 minutes ago</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card notification-card">
+                                        <div class="card-body">
+                                            <div class="notification-header">
+                                                <div class="notification-content">
+                                                    <i class="fas fa-check-circle notification-icon text-success"></i>
+                                                    <div>
+                                                        <h5 class="card-title mb-1">Task Completed</h5>
+                                                        <p class="card-text mb-0">Your recent task has been completed.</p>
+                                                    </div>
+                                                </div>
+                                                <small class="notification-time">30 minutes ago</small>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+        </div>
+    </div>
                                         </div>
                                         <div class="read_more">
                                             <div class="center"><a class="main_bt read_bt" href="#">Read
