@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}" />
-    <!-- scrollbar css -->
+    <!-- scrollbar css --> 
     <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" />
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
@@ -173,7 +173,7 @@
                                         <!---card starts here --->
 
                                     @if($refers->isEmpty())
-                                    <p>No Message Yet</p>
+                                    <p>No Refer Yet</p>
                                 @else
                                     <div class="list-group">
                                         @foreach($refers as $refer)
@@ -184,7 +184,7 @@
                                                         <div class="notification-content">
                                                             <i class="fas fa-envelope notification-icon text-primary"></i>
                                                             <div>
-                                                                <h5 class="card-title mb-1">Message from {{ $refer->refer_from_name }}</h5>
+                                                                <h5 class="card-title mb-1">Refered from {{ $refer->refer_from_name }}</h5>
                                                                 <p class="card-text mb-0">{{ $refer->message_sent }}</p>
                                                             </div>
                                                         </div>
@@ -246,8 +246,9 @@
                                         </div>
                                     </div> -->
 
-        </div>
-    </div>
+                                            </div>
+                                        <!----End---->
+                                        </div>
                                         </div>
                                         <div class="read_more">
                                             <div class="center"><a class="main_bt read_bt" href="#">Read

@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" />
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -156,7 +159,7 @@
                                                   <td><a href="{{ url('messagestaff', $staff->id) }}"><button class="btn btn-primary">Message</button></a></td>
                                                 </tr>
                                               </tbody>
-                                              @endforeach
+                                              @endforeach 
                                             </table>
                                         </div>
 
@@ -176,9 +179,57 @@
                                             <p>Last Messages</p>
                                         </div>
                                         <div class="msg_list_main">
-                                            <ul class="msg_list">
+                                           
+                                    <div class="list-group">
+                                        <!---card starts here --->
 
-                                            </ul>
+                                    @if($refers->isEmpty())
+                                    <p>No Refer Yet</p>
+                                        @else
+                                            <div class="list-group">
+                                                @foreach($refers as $refer)
+                                                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-align: left; border: none; cursor: pointer; box-shadow: none;">
+                                                    <div class="card notification-card">
+                                                        <div class="card-body">
+                                                            <div class="notification-header">
+                                                                <div class="notification-content">
+                                                                    <i class="fas fa-envelope notification-icon text-primary"></i>
+                                                                    <div>
+                                                                        <h5 class="card-title mb-1">Refered from {{ $refer->refer_from_name }}</h5>
+                                                                        <p class="card-text mb-0">{{ $refer->message_sent }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <small class="notification-time">{{ $refer->created_at->diffForHumans() }}</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </button>
+
+                                                <!-- Modal for each message -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                      <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Vew Message</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                        ...
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                                @endforeach
+                                            </div>
+                                        @endif
+
+                                        </div>
+
                                         </div>
                                         <div class="read_more">
                                             <div class="center"><a class="main_bt read_bt" href="#">Read
@@ -273,6 +324,10 @@
     <!-- custom js -->
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
+
+
+    <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 

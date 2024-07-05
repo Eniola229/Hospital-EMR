@@ -26,8 +26,12 @@ use App\Http\Controllers\Pharmacy\ViewSinglePatentRecordsController;
 use App\Http\Controllers\Pharmacy\AddPharmacyController; 
 use App\Http\Controllers\Pharmacy\ReferToADoctorController; 
 
+
 //For Staff
 use App\Http\Controllers\Staff\ViewGeneralNotificationOrMsgController; 
+
+//For Messages
+use App\Http\Controllers\Messages\MessageController; 
 
  
 
@@ -163,8 +167,11 @@ Route::middleware('auth')->group(function () {
     Route::post('addecounter', [AddToEconterController::class, 'store'])->name('addecounter.store');
     //This is to view all staffs for the message 
     Route::get('/message', [ViewStaffMessageController::class, 'viewstaffsmsg'])->name('message.viewstaffsmsg');
+
+
     //This is to view a particular staff info in message staff page 
     Route::get('/messagestaff/{id}', [ViewStaffMsgInfoController::class, 'show'])->name('messagestaff.viewstaffsmsg');
+    Route::get('/message', [ViewStaffMessageController::class, 'viewstaffsmsg'])->name('message.viewstaffsmsg');
     //This is to view all patints on pharmacy page 
     Route::get('/pharmacy', [ViewPateintPharController::class, 'show'])->name('pharmacy.records');
     //This is to view patints pharmacy record 
@@ -174,9 +181,13 @@ Route::middleware('auth')->group(function () {
 
     //This is for refer a doctor 
     Route::post('/viewsingleeconterpatient', [ReferToADoctorController::class, 'store'])->name('viewsingleeconterpatient.store');
+    Route::get('/dashboard', [ViewGeneralNotificationOrMsgController::class, 'show'])->name('dashboard.show');
     //This is for refer a doctor staff
-    Route::get('/dashboard', [ViewGeneralNotificationOrMsgController::class, 'show'])->name('/dashboard.show');
+    Route::post('/messagestaff', [MessageController::class, 'store'])->name('messagestaff.store');
+    
 
+
+ 
 
 
     // //This is to show a single Ecounter for Patient
