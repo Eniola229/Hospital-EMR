@@ -19,8 +19,7 @@ use App\Http\Controllers\Hospital\ShowPatientSpecificEcounter;
 use App\Http\Controllers\Hospital\ViewForAccount; 
 // use App\Http\Controllers\Hospital\ShowSpecificEounterNote; 
 use App\Http\Controllers\Hospital\AddToEconterController; 
-use App\Http\Controllers\Hospital\ViewStaffMessageController; 
-use App\Http\Controllers\Messages\ViewStaffMsgInfoController; 
+// use App\Http\Controllers\Hospital\ViewStaffMessageController; 
 use App\Http\Controllers\Pharmacy\ViewPateintPharController; 
 use App\Http\Controllers\Pharmacy\ViewSinglePatentRecordsController; 
 use App\Http\Controllers\Pharmacy\AddPharmacyController; 
@@ -32,18 +31,17 @@ use App\Http\Controllers\Staff\ViewGeneralNotificationOrMsgController;
 
 //For Messages
 use App\Http\Controllers\Messages\MessageController; 
+use App\Http\Controllers\Messages\VewLastMessageController; 
+use App\Http\Controllers\Messages\ViewStaffMsgInfoController; 
 
- 
+//This is for patient login 
+use App\Http\Controllers\Patient\PatientLogin;
 
 
 //This is the route for all page
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-
-Route::get('/patientlogin', function () {
-    return view('patientlogin');
-})->name('patientlogin');
 
 Route::get('/complains', function () {
     return view('complains'); 
@@ -166,12 +164,15 @@ Route::middleware('auth')->group(function () {
     //This is to add ecounter note
     Route::post('addecounter', [AddToEconterController::class, 'store'])->name('addecounter.store');
     //This is to view all staffs for the message 
-    Route::get('/message', [ViewStaffMessageController::class, 'viewstaffsmsg'])->name('message.viewstaffsmsg');
+    Route::get('/message', [VewLastMessageController::class, 'viewstaffsmsg'])->name('message.viewstaffsmsg');
 
 
     //This is to view a particular staff info in message staff page 
     Route::get('/messagestaff/{id}', [ViewStaffMsgInfoController::class, 'show'])->name('messagestaff.viewstaffsmsg');
-    Route::get('/message', [ViewStaffMessageController::class, 'viewstaffsmsg'])->name('message.viewstaffsmsg');
+    Route::get('/message', [VewLastMessageController::class, 'viewstaffsmsg'])->name('message.viewstaffsmsg');
+    
+
+
     //This is to view all patints on pharmacy page 
     Route::get('/pharmacy', [ViewPateintPharController::class, 'show'])->name('pharmacy.records');
     //This is to view patints pharmacy record 
@@ -182,8 +183,9 @@ Route::middleware('auth')->group(function () {
     //This is for refer a doctor 
     Route::post('/viewsingleeconterpatient', [ReferToADoctorController::class, 'store'])->name('viewsingleeconterpatient.store');
     Route::get('/dashboard', [ViewGeneralNotificationOrMsgController::class, 'show'])->name('dashboard.show');
-    //This is for refer a doctor staff
+    //This is to message  staff
     Route::post('/messagestaff', [MessageController::class, 'store'])->name('messagestaff.store');
+    Route::delete('/messagestaff', [MessageController::class, 'destroy'])->name('deletemsg.destroy');
     
 
 
@@ -195,3 +197,18 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+//for patients route 
+
+//Patient Login Route
+
+
+
+Route::get('/patients/dashboard', function() {
+    return view('patients.dashboard');
+})->middleware(['auth', 'verified'])->name('patients.dashboard');
+
+Route::get('/patients/patienteconter', function() {
+    return view('patients.patienteconter');
+})->middleware(['auth', 'verified'])->name('patients.patienteconter');

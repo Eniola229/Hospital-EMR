@@ -18,13 +18,13 @@
     <!-- Style -->
     <link rel="stylesheet" href="{{ asset('logincss/style.css') }}">
 
-    <title>Doctor's Login | EMR</title>
+    <title>Patient's Login | EMR</title>
   </head>
   <body>
   
 
   <div class="d-md-flex half">
-    <div class="bg" style="background-image: url('https://img.freepik.com/free-photo/medium-shot-smiley-doctor-with-coat_23-2148814212.jpg?t=st=1720473590~exp=1720477190~hmac=b6c4cab4de3c302eefe4f1e5288871dcc90ebc1eec2a34e720ebb0bacc910081&w=360');"></div>
+    <div class="bg" style="background-image: url('https://img.freepik.com/free-photo/portrait-sick-young-woman-resting-bed-medical-consultation-wearing-protective-face-mask-prevent-infection-with-coronavirus-recovering-after-surgery-hospital-ward-medicine-services_482257-29138.jpg?t=st=1720360231~exp=1720363831~hmac=b764c135c37717c973675809aea975c71c7b7d83be8d196d27fac57cd6958673&w=360');"></div>
     <div class="contents">
 
       <div class="container">
@@ -32,12 +32,11 @@
           <div class="col-md-12">
             <div class="form-block mx-auto">
               <div class="text-center mb-5">
-              <h3>Doctor's Login <strong></strong></h3>
+              <h3>Patient's Login <strong></strong></h3>
              <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
               </div>
-             <form method="POST" action="{{ route('login') }}">
+             <form method="POST" action="{{ route('patientslogin.custom') }}">
              @csrf
-
                 <div class="form-group first">
                   <label for="username">Email</label>
                   <input type="email"  name="email" class="form-control" placeholder="your-email@gmail.com" id="username">

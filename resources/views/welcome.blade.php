@@ -51,7 +51,7 @@
         <div class="branding d-flex align-items-center">
 
             <div class="container position-relative d-flex align-items-center justify-content-between">
-                <a href="index.html" class="logo d-flex align-items-center me-auto">
+                <a href="{{ url('/') }}" class="logo d-flex align-items-center me-auto">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
                     <h1 class="sitename">RHC EMR</h1>
@@ -59,7 +59,7 @@
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="#hero" class="active">Home<br></a></li>
+                        <li><a href="https://www.rccghealthcentre.com/" class="active">Home<br></a></li>
                         <li><a href="#doctors">Doctors</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -68,7 +68,7 @@
 
                 <a class="cta-btn d-none d-sm-block" href="#appointment">Make an Appointment</a>
                 <a class="cta-btn d-none d-sm-block" href="{{ url('login') }}">Doctors Login</a>
-                <a class="cta-btn d-none d-sm-block" href="{{ url('patientlogin') }}">Patient Login</a>
+                <a class="cta-btn d-none d-sm-block" href="{{ url('patientslogin') }}">Patient Login</a>
 
             </div>
 
@@ -98,7 +98,7 @@
                                 We are here to help you get the best care. Redeemers Health Centre
                             </p>
                             <div class="text-center">
-                                <a href="#about" class="more-btn"><span>Learn More</span> <i
+                                <a href="#about" class="more-btn"><span>Click Search</span> <i
                                         class="bi bi-chevron-right"></i></a>
                             </div>
                         </div>
@@ -111,21 +111,23 @@
                                 <div class="col-xl-12 d-flex align-items-stretch">
 
                                     <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
-                                        <h3 class="text">Search for any of our Professional Doctors!</h3>
+                                        <h3 class="text">Search for Specialties</h3>
                                         <div class="row">
-                                            <div class="col">
-                                            <form action="{{ route('welcome.show') }}" method="GET">
-                                                <input style="height:10vh;" type="search" class="form-control"
-                                                   name="search" placeholder="Specification (Type Of Doctor)"
-                                                    aria-label="Specification (Type Of Doctor)">
-                                            </div>
-                                            <!-- <div class="col">
-                                                <input type="text" style="height:10vh;" class="form-control"
-                                                   name="location" placeholder="Location" aria-label="Locations">
-                                        </div> -->
-                                        </div>
-                                         <button  style="width: 80%;" class="btn btn-primary mt-4">Search</button>
-                                         </form>
+                                            <div class="row">
+                                            <div class="col-8">
+                                                <form action="{{ route('welcome.show') }}" method="GET">
+                                                <input type="search" class="form-control"
+                                                   name="search" placeholder="Specialties"
+                                                    aria-label="Specialties" style="width: 100%;">
+                                            </div>                                              
+                                           <div class="col">
+                                              <input type="submit" class="btn btn-primary" aria-label="Search" value="Search">
+                                        </div> 
+                                       </div>
+                                       </form>
+                                       <a href="#doctors">
+                                         <button  style="width: 80%;" class="btn btn-primary mt-4">Doctors</button>
+                                        </a>
                                     </div>
 
                                 </div><!-- End Icon Box -->
@@ -189,7 +191,7 @@
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
                         <i class="fa-solid fa-user-doctor"></i>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="105" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="80" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Doctors</p>
                         </div>
@@ -198,7 +200,7 @@
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
                         <i class="fa-regular fa-hospital"></i>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="13" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Departments</p>
                         </div>
@@ -207,7 +209,7 @@
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
                         <i class="fas fa-flask"></i>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="16" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Research Labs</p>
                         </div>
@@ -216,7 +218,7 @@
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
                         <i class="fas fa-award"></i>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="30" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Awards</p>
                         </div>
@@ -344,14 +346,14 @@
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
                                 <h3>Email Us</h3>
-                                <p>nfo@rccghealthcenter.com</p>
+                                <p>info@rccghealthcenter.com</p>
                             </div>
                         </div><!-- End Info Item -->
 
                     </div>
 
                     <div class="col-lg-8">
-                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+                        <form action="#" method="post" class="php-email-form" data-aos="fade-up"
                             data-aos-delay="200">
                             <div class="row gy-4">
 
@@ -399,14 +401,14 @@
         <div class="container footer-top">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="logo d-flex align-items-center">
+                    <a href="{{ url('/') }}" class="logo d-flex align-items-center">
                         <span class="sitename">RHC EMR</span>
                     </a>
                     <div class="footer-contact pt-3">
                         <p>Redeemtion
                             City, Mowe Ibafo, Ogun State, Nigeria</p>
                         <p class="mt-3"><strong>Phone:</strong> <span>+2348182363462</span></p>
-                        <p><strong>Email:</strong> <span>nfo@rccghealthcenter.coms</span></p>
+                        <p><strong>Email:</strong> <span>info@rccghealthcenter.com</span></p>
                     </div>
                     <div class="social-links d-flex mt-4">
                         <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -419,9 +421,9 @@
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
+                        <li><a href="https://www.rccghealthcentre.com/">Home</a></li>
+                     <!--    <li><a href="#">About us</a></li>
+                        <li><a href="#">Services</a></li> -->
                         <li><a href="#">Terms of service</a></li>
                         <li><a href="#">Privacy policy</a></li>
                     </ul>

@@ -118,7 +118,7 @@
                         </div>
                         <!-- end welcome -->
 
-                         <!-- Display Success Message -->
+                         <!-- Display Error Message -->
                             @if (session('error'))
                                 <div class="alert alert-success">
                                     {{ session('error') }}

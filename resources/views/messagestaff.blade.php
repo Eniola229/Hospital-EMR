@@ -125,7 +125,7 @@
                         </div>
                         <!-- end welcome -->
                          @if (session('status'))
-                                <div class="alert alert-danger">
+                                <div class="alert alert-success">
                                     {{ session('status') }}
                                 </div>
                             @endif
@@ -159,7 +159,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="d-flex justify-content-between align-items-center mb-4">
-                                                        <h5>Messages with {{ $staffinfo->name }}</h5>
+                                                        <h5>Messages with {{ $staffinfo->first_name }}</h5>
                                                         <!-- Dropdown Menu for Actions -->
                                                       <!--   <div class="dropdown">
                                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -180,21 +180,28 @@
                                                                 @if(($staffinfo->id == $message->resiver_id && Auth::user()->id == $message->user_id) || ($staffinfo->id == $message->user_id && Auth::user()->id == $message->resiver_id))
                                                                     @if ($message->resiver_id == Auth::user()->id)
                                                                         <!-- Received Message -->
-                                                                        <div class="d-flex justify-content-start mb-3 bg-light p-3 rounded">
-                                                                            <div class="" style="max-width: 75%;">
-                                                                                <p class="mb-1">{{ $message->message_body }}</p>
-                                                                                <small class="text-muted">{{ $message->created_at->diffForHumans() }}</small>
-                                                                            </div>
+                                                                        <div class="d-flex justify-content-start mb-3 ">
+                                                                            <div class="bg-light p-3 rounded" style="max-width: 75%;">
+                                                                            
                                                                             <!-- Dropdown Menu Trigger for Received Message -->
-                                                                            <div class="dropdown ml-2">
-                                                                                <button class="btn btn-sm  dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                                    Actions
+                                                                            <div class="dropdown ml-2 d-flex justify-content-end">
+                                                                                <button class="btn btn-sm  dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
+                                                                                   <i class="fa-solid fa-bars" style="color: black;"></i>
                                                                                 </button>
                                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                                    <li><a class="dropdown-item" href="#">Edit</a></li>
                                                                                     <li><a class="dropdown-item" href="#">Delete</a></li>
                                                                                 </ul>
                                                                             </div>
+
+                                                                                <p class="mb-1">{{ $message->message_body }}</p>
+                                                                               @if($message->image_sent_path != "no image uploaded")
+                                                                                    <img style="height: 100px; width: 100px; border-radius: 5px;" src="{{ asset('storage/' . $message->image_sent_path) }}" >
+                                                                                    <br> 
+                                                                                @endif
+                                                                               
+                                                                                <small class="text-muted">{{ $message->created_at->diffForHumans() }}</small>
+                                                                            </div>
+                                                                            
                                                                         </div>
                                                                     @else
                                                                         <!-- Sent Message -->
@@ -203,15 +210,25 @@
                                                                         <!-- Dropdown Menu Trigger for Sent Message -->
                                                                             <div class="dropdown mr-2 d-flex justify-content-end">
                                                                                 <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; font-weight: bolder;">
-                                                                                    Actions
+                                                                                   You <i class="fa-solid fa-bars"></i>
                                                                                 </button>
                                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                                                     <li><a class="dropdown-item" href="#">Edit</a></li>
-                                                                                    <li><a class="dropdown-item" href="#">Delete</a></li>
+                                                                                    <li class="dropdown-item">  <form style="display: inline-block;" action="{{ route('deletemsg.destroy') }}" method="POST">
+                                                                                            @csrf
+                                                                                            @method('DELETE')
+                                                                                            <input type="hidden" name="msg_id" value="{{ $message->id }}">
+                                                                                            <button type="submit" style="border: none;background: none;" class="">Delete</button>
+                                                                                        </form></li>
                                                                                 </ul>
                                                                             </div>
 
-                                                                                <p class="mb-1">{{ $message->message_body }}</p>
+                                                                                <p  style="color: white;" class="mb-1">{{ $message->message_body }}</p>
+                                                                               @if($message->image_sent_path != "no image uploaded")
+                                                                                    <img style="height: 100px; width: 100px; border-radius: 5px;" src="{{ asset('storage/' . $message->image_sent_path) }}" > 
+                                                                                       <br>
+                                                                                @endif
+                                                                            
                                                                                 <small>{{ $message->created_at->diffForHumans() }}</small>
                                                                             </div>
                                                                            
@@ -230,7 +247,7 @@
 
                                             <div class="col-md-6">
                                                 <!-----Start of sending message --->
-                                               <form action="{{ route('messagestaff.store') }}" method="POST" class="form-control p-3 mt-4" enctype="multipart/form-data" style="width: 400px; justify-content: center; align-items: center; margin: auto;">
+                                               <form  id="messageForm" action="{{ route('messagestaff.store') }}" method="POST" class="form-control mt-4 mb-4" enctype="multipart/form-data" style="width: 400px; justify-content: center; align-items: center; margin: auto;">
                                                     @csrf
                                                     <input type="hidden" name="user_id" value="{{ AUth::user()->id }}">
                                                     <input type="hidden" name="resiver_id" value="{{ $staffinfo->id }}">
@@ -240,7 +257,7 @@
                                                             <i class="bi bi-image"></i> <!-- Bootstrap Icons image icon -->
                                                             <input type="file" class="d-none" id="image" name="image_sent_path">
                                                         </label>
-                                                        <button class="btn btn-danger" type="submit">
+                                                        <button  id="submitBtn" class="btn btn-danger" type="submit">
                                                             <i class="bi bi-send"></i>
                                                         </button>
                                                     </div>
@@ -267,42 +284,7 @@
                                             <p>Last Messages</p>
                                         </div>
                                         <div class="msg_list_main">
-                                            <div class="list-group">
-                                        <!---card starts here --->
- 
-                                       <div class="container py-3" style="max-width: 600px;">
-                                        <!-----Start of message card--->
-                                        <div class="container py-3" style="max-width: 600px;">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="mb-4">Messages</h5>
-                                                    @if($allMessages->isEmpty())
-                                                        <p>No Messages Yet</p>
-                                                    @else
-                                                        <div>
-                                                            @foreach ($allMessages as $message)
-                                                                @if ($message->resiver_id == Auth::user()->id)
-                                                                    <!-- Received Message -->
-                                                                    <div class="d-flex justify-content-start mb-3">
-                                                                        <div class="bg-light p-3 rounded" style="max-width: 75%;">
-                                                                            <p class="mb-1">{{ $message->message_body }}</p>
-                                                                            <small class="text-muted">{{ $message->created_at->diffForHumans() }}</small>
-                                                                        </div>
-                                                                    </div>
-                                                                @else
-                                                                    <!-- Sent Message -->
-                                                                    <div class="d-flex justify-content-end mb-3">
-                                                                        <div class="bg-primary text-white p-3 rounded" style="max-width: 75%;">
-                                                                            <p class="mb-1">{{ $message->message_body }}</p>
-                                                                            <small>{{ $message->created_at->diffForHumans() }}</small>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-                                                            @endforeach
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
+                                           </div>
                                         </div>  
                                         <!----End of message card---->
 

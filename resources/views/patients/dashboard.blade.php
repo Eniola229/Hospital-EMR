@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RHC EMR | Messages</title>
+    <title>RHC EMR | Dashboard</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- site icon -->
     <link rel="icon" href="images/fevicon.png" type="image/png" />
-    <!-- bootstrap css -->
+    <!-- bootstrap css --> 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.min.css') }}" />
     <!-- site css -->
@@ -26,13 +26,16 @@
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}" />
-    <!-- scrollbar css -->
+    <!-- scrollbar css --> 
     <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" />
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/notifications.css') }}" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -43,7 +46,7 @@
     <div class="full_container">
         <div class="inner_container">
             <!-- Sidebar  -->
-            @include('components.sidenav')
+            @include('components.patientsidenav')
             <!-- end sidebar -->
             <!-- right content -->
             <div id="content">
@@ -120,11 +123,7 @@
                             </div>
                         </div>
                         <!-- end welcome -->
-                        @if (session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
+
 
                         <div class="row column3">
                         </div>
@@ -134,33 +133,18 @@
                                     <div class="dash_blog_inner">
                                         <div class="dash_head">
                                             <h3><span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M2.25 5A2.75 2.75 0 0 1 5 2.25h14A2.75 2.75 0 0 1 21.75 5v10A2.75 2.75 0 0 1 19 17.75H7.961c-.38 0-.739.173-.976.47l-2.33 2.913c-.798.996-2.405.433-2.405-.843z" clip-rule="evenodd"/></svg>
-                                                    |Message A Staff</span><span class="plus_green_bt"></span></h3>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em"
+                                                        height="1.5em" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M19.995 4.097A2.25 2.25 0 0 0 17.75 2H6.25l-.154.005A2.25 2.25 0 0 0 4 4.251v15.498l.005.154A2.25 2.25 0 0 0 6.25 22h7.568l-1.5-1.5H6.25l-.102-.007a.75.75 0 0 1-.648-.743V4.251l.007-.102a.75.75 0 0 1 .743-.648h11.5l.102.007a.75.75 0 0 1 .648.743v11.567l1.159-1.159q.16-.16.34-.28V4.25zm-3.707 17.902h-.076a.75.75 0 0 1-.493-.219l-2.5-2.502a.75.75 0 0 1 1.062-1.06l1.969 1.971l4.47-4.47a.75.75 0 1 1 1.06 1.061l-5 5a.75.75 0 0 1-.492.219M13.84 16.5a2 2 0 0 0-.182 0h-2.413a.75.75 0 0 1 0-1.5h5.004a.75.75 0 1 1 0 1.5zM9 7.752a1 1 0 1 1-2 0a1 1 0 0 1 2 0m1.496-.002a.75.75 0 0 1 .75-.75h5.004a.75.75 0 1 1 0 1.5h-5.004a.75.75 0 0 1-.75-.75m.75 3.25a.75.75 0 0 0 0 1.5h5.004a.75.75 0 1 0 0-1.5zM8 12.75a1 1 0 1 0 0-2a1 1 0 0 0 0 2m1 2.998a1 1 0 1 1-2 0a1 1 0 0 1 2 0" />
+                                                    </svg>
+                                                    |Today's News</span><span class="plus_green_bt"></span></h3>
                                         </div>
                                         <div class="list_cont">
-                                            <p>Choose a staff and message</p>
+                                            <p>Get Our Daily News</p>
                                         </div>
                                         <div class="task_list_main">
-                                            <table class="table table-striped-columns">
-                                              <thead>
-                                                <tr>
-                                                  <th scope="col">#</th>
-                                                  <th scope="col">Name</th>
-                                                  <th scope="col">Specialization</th>
-                                                  <th scope="col">Action</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                @foreach($staffs as $staff)
-                                                <tr>
-                                                  <th scope="row">{{$staff->id}}</th>
-                                                  <td>{{$staff->first_name}}</td>
-                                                  <td>{{$staff->specialization}}</td>
-                                                  <td><a href="{{ url('messagestaff', $staff->id) }}"><button class="btn btn-primary">Message</button></a></td>
-                                                </tr>
-                                              </tbody>
-                                              @endforeach 
-                                            </table>
+
                                         </div>
 
                                     </div>
@@ -171,46 +155,27 @@
                                     <div class="dash_blog_inner">
                                         <div class="dash_head">
                                             <h3><span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8m-8 4h6m4-9a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-5l-5 3v-3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z"/></svg>
-                                                    Last Messages</span><span class="plus_green_bt"><a
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em"
+                                                        height="1.5em" viewBox="0 0 24 24">
+                                                        <path fill="none" stroke="currentColor"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="m21 14l-3-3h-7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm-7 1v2a1 1 0 0 1-1 1H6l-3 3V11a1 1 0 0 1 1-1h2" />
+                                                    </svg>
+                                                    Updates</span><span class="plus_green_bt"><a
                                                         href="#"></a></span></h3>
                                         </div>
                                         <div class="list_cont">
-                                            <p>Last Messages</p>
+                                            <p>General Notifications/Messages</p>
                                         </div>
                                         <div class="msg_list_main">
-                                           
-                                    <div class="list-group">
-                                        <!---card starts here --->
+	                                    <div class="list-group">
+	                                        <!---card starts here --->
 
-                                    @if($messages->isEmpty())
-                                    <p>You have not message or recived any message yet</p>
-                                        @else
-                                            <div class="list-group">
-                                                @foreach($messages as $message)
-                                              <a href="{{ url('messagestaff', $message->user_id) }}">
-                                                    <div class="card notification-card">
-                                                        <div class="card-body">
-                                                            <div class="notification-header">
-                                                                <div class="notification-content" style="display: flex;">
-                                                                    <i class="fas fa-envelope notification-icon text-primary"></i>
-                                                                    <div>
-                                                                        <h5 class="card-title mb-1">Message</h5>
-                                                                        <p class="card-text mb-0">{{ $message->message_body }}</p>
-                                                                    </div>
-                                                                </div>
-                                                                <small class="notification-time">{{ $message->created_at->diffForHumans() }}</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-
-                                                @endforeach
-                                            </div>
-                                        @endif
-
+	                               
+	                                    </div>
+	                                        <!----End---->
                                         </div>
-
                                         </div>
                                         <div class="read_more">
                                             <div class="center"><a class="main_bt read_bt" href="#">Read
@@ -305,11 +270,7 @@
     <!-- custom js -->
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
-
-
-    <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 
 </html>

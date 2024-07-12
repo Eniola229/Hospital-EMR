@@ -20,12 +20,12 @@ class MessageController extends Controller
                 'image_sent_path' => ['nullable', 'image', 'max:2048'],
             ]);
 
-            // Handle avatar upload and resizing
+            // Handle image upload and resizing
             if ($request->hasFile('image_sent_path')) {
                 $imageFile = $request->file('image_sent_path');
                 $imageSize = $imageFile->getSize();
 
-                // Check if the avatar exceeds 2MB
+                // Check if the image exceeds 2MB
                 if ($imageSize > 2048000) { // 2MB in bytes
                     // Resize the image to reduce file size
                     $image = Image::make($imageFile)->resize(500, null, function ($constraint) {
@@ -33,11 +33,11 @@ class MessageController extends Controller
                         $constraint->upsize();
                     });
 
-                    // Store the resized avatar
+                    // Store the resized image
                     $imagePath = $image->store('public/messageimages'); // Store the resized image
                 } else {
                     // Avatar is within 2MB size limit, store it as usual
-                    $imagePath = $request->file('avatar')->store('public/messageimages');
+                    $imagePath = $request->file('image_sent_path')->store('public/messageimages');
                 }
                 $imagePath = str_replace('public/', '', $imagePath);
             } else {
@@ -58,6 +58,23 @@ class MessageController extends Controller
             // Mail::to($add->email)->send(new AddPatientMail($add));
 
             return redirect()->back()->with('status', 'Message Succesfully Sent');
+        }
+
+        public function destroy(Request $request)
+        {
+            $request->validate([
+                'msg_id' => 'required|integer'
+            ]);
+
+            $msgId = $request->input('msg_id');
+            $msg = Messages::find($msgId);
+
+            if ($msg) {
+                $msg->delete();
+                return redirect()->back()->with('status', 'Message Successfully Deleted');
+            } else {
+                return redirect()->back()->with('status', 'Message Not Found');
+            }
         }
 
 

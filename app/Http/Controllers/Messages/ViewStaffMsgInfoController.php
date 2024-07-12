@@ -31,3 +31,4 @@ class ViewStaffMsgInfoController extends Controller
         return view('messagestaff', compact('staffinfo', 'allMessages'));
     }
 }
+ 

@@ -186,14 +186,14 @@
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
                                 <h3>Email Us</h3>
-                                <p>nfo@rccghealthcenter.com</p>
+                                <p>info@rccghealthcenter.com</p>
                             </div>
                         </div><!-- End Info Item -->
 
                     </div>
 
                     <div class="col-lg-8">
-                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+                        <form action="#" method="post" class="php-email-form" data-aos="fade-up"
                             data-aos-delay="200">
                             <div class="row gy-4">
 
@@ -248,7 +248,7 @@
                         <p>Redeemtion
                             City, Mowe Ibafo, Ogun State, Nigeria</p>
                         <p class="mt-3"><strong>Phone:</strong> <span>+2348182363462</span></p>
-                        <p><strong>Email:</strong> <span>nfo@rccghealthcenter.coms</span></p>
+                        <p><strong>Email:</strong> <span>info@rccghealthcenter.com</span></p>
                     </div>
                     <div class="social-links d-flex mt-4">
                         <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -262,8 +262,8 @@
                     <h4>Useful Links</h4>
                     <ul>
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
+                    <!--     <li><a href="#">About us</a></li>
+                        <li><a href="#">Services</a></li> -->
                         <li><a href="#">Terms of service</a></li>
                         <li><a href="#">Privacy policy</a></li>
                     </ul>

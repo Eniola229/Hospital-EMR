@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RHC EMR | Messages</title>
+    <title>RHC EMR | Register</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.min.css') }}" />
     <!-- site css -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <!-- responsive css --> 
+    <!-- responsive css -->
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
-    <!-- color css --> 
+    <!-- color css -->
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}" />
@@ -30,9 +30,6 @@
     <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" />
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/notifications.css') }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -43,7 +40,9 @@
     <div class="full_container">
         <div class="inner_container">
             <!-- Sidebar  -->
-            @include('components.sidenav')
+            <nav id="sidebar">
+              @include('components.sidenav')
+            </nav>
             <!-- end sidebar -->
             <!-- right content -->
             <div id="content">
@@ -120,106 +119,120 @@
                             </div>
                         </div>
                         <!-- end welcome -->
-                        @if (session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
+
 
                         <div class="row column3">
                         </div>
-                        <div class="row column4 graph">
-                            <div class="col-md-6 margin_bottom_30">
-                                <div class="dash_blog">
-                                    <div class="dash_blog_inner">
-                                        <div class="dash_head">
-                                            <h3><span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M2.25 5A2.75 2.75 0 0 1 5 2.25h14A2.75 2.75 0 0 1 21.75 5v10A2.75 2.75 0 0 1 19 17.75H7.961c-.38 0-.739.173-.976.47l-2.33 2.913c-.798.996-2.405.433-2.405-.843z" clip-rule="evenodd"/></svg>
-                                                    |Message A Staff</span><span class="plus_green_bt"></span></h3>
-                                        </div>
-                                        <div class="list_cont">
-                                            <p>Choose a staff and message</p>
-                                        </div>
-                                        <div class="task_list_main">
-                                            <table class="table table-striped-columns">
-                                              <thead>
-                                                <tr>
-                                                  <th scope="col">#</th>
-                                                  <th scope="col">Name</th>
-                                                  <th scope="col">Specialization</th>
-                                                  <th scope="col">Action</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                @foreach($staffs as $staff)
-                                                <tr>
-                                                  <th scope="row">{{$staff->id}}</th>
-                                                  <td>{{$staff->first_name}}</td>
-                                                  <td>{{$staff->specialization}}</td>
-                                                  <td><a href="{{ url('messagestaff', $staff->id) }}"><button class="btn btn-primary">Message</button></a></td>
-                                                </tr>
-                                              </tbody>
-                                              @endforeach 
-                                            </table>
-                                        </div>
-
-                                    </div>
+                       
+                        <form style="width: 95%;" method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="container border rounded">
+                            @csrf
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="avatar" class="form-label fw-bold">Profile Picture</label>
+                                    <input id="avatar" type="file" name="avatar" class="form-control" required autofocus autocomplete="avatar">
+                                    <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="first_name" class="form-label fw-bold">First Name</label>
+                                    <input id="first_name" type="text" name="first_name" class="form-control" :value="old('first_name')" required autofocus autocomplete="first_name">
+                                    <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="dash_blog">
-                                    <div class="dash_blog_inner">
-                                        <div class="dash_head">
-                                            <h3><span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8m-8 4h6m4-9a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-5l-5 3v-3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z"/></svg>
-                                                    Last Messages</span><span class="plus_green_bt"><a
-                                                        href="#"></a></span></h3>
-                                        </div>
-                                        <div class="list_cont">
-                                            <p>Last Messages</p>
-                                        </div>
-                                        <div class="msg_list_main">
-                                           
-                                    <div class="list-group">
-                                        <!---card starts here --->
 
-                                    @if($messages->isEmpty())
-                                    <p>You have not message or recived any message yet</p>
-                                        @else
-                                            <div class="list-group">
-                                                @foreach($messages as $message)
-                                              <a href="{{ url('messagestaff', $message->user_id) }}">
-                                                    <div class="card notification-card">
-                                                        <div class="card-body">
-                                                            <div class="notification-header">
-                                                                <div class="notification-content" style="display: flex;">
-                                                                    <i class="fas fa-envelope notification-icon text-primary"></i>
-                                                                    <div>
-                                                                        <h5 class="card-title mb-1">Message</h5>
-                                                                        <p class="card-text mb-0">{{ $message->message_body }}</p>
-                                                                    </div>
-                                                                </div>
-                                                                <small class="notification-time">{{ $message->created_at->diffForHumans() }}</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-
-                                                @endforeach
-                                            </div>
-                                        @endif
-
-                                        </div>
-
-                                        </div>
-                                        <div class="read_more">
-                                            <div class="center"><a class="main_bt read_bt" href="#">Read
-                                                    More</a></div>
-                                        </div>
-                                    </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="last_name" class="form-label fw-bold">Last Name</label>
+                                    <input id="last_name" type="text" name="last_name" class="form-control" :value="old('last_name')" required autofocus autocomplete="last_name">
+                                    <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                                 </div>
+                            <div class="form-floating col-md-6">
+                                 <label for="floatingSelect">Choose Role</label>
+                              <select name="role" required class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                <option value="" selected disabled>Choose Role</option>
+                                        <option value="0">Nurse</option>
+                                        <option value="3">Doctor</option>
+                                        <option value="3">Pharmacy</option>
+                                        <option value="4">Account</option>
+                              </select>
+                             
                             </div>
                         </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="qualification" class="form-label fw-bold">Qualification</label>
+                                    <input id="qualification" type="text" name="qualification" class="form-control" :value="old('qualification')" required autofocus autocomplete="qualification">
+                                    <x-input-error :messages="$errors->get('qualification')" class="mt-2" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="intro" class="form-label fw-bold">Intro</label>
+                                    <input id="intro" type="text" name="intro" class="form-control" :value="old('intro')" required autofocus autocomplete="intro">
+                                    <x-input-error :messages="$errors->get('intro')" class="mt-2" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="years_of_experience" class="form-label fw-bold">Years of Experience</label>
+                                    <input id="years_of_experience" type="number" name="years_of_experience" class="form-control" :value="old('years_of_experience')" required autofocus autocomplete="years_of_experience">
+                                    <x-input-error :messages="$errors->get('years_of_experience')" class="mt-2" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="specialization" class="form-label fw-bold">Specialization</label>
+                                    <input id="specialization" type="text" name="specialization" class="form-control" :value="old('specialization')" required autofocus autocomplete="specialization">
+                                    <x-input-error :messages="$errors->get('specialization')" class="mt-2" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="location" class="form-label fw-bold">Location</label>
+                                    <input id="location" type="text" name="location" class="form-control" :value="old('location')" required autofocus autocomplete="location">
+                                    <x-input-error :messages="$errors->get('location')" class="mt-2" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="date_of_birth" class="form-label fw-bold">Date of Birth</label>
+                                    <input id="date_of_birth" type="date" name="date_of_birth" class="form-control" :value="old('date_of_birth')" required autofocus autocomplete="date_of_birth">
+                                    <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="phone_number" class="form-label fw-bold">Phone Number</label>
+                                    <input id="phone_number" type="tel" name="phone_number" class="form-control" :value="old('phone_number')" required autofocus autocomplete="phone_number">
+                                    <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label fw-bold">Email</label>
+                                    <input id="email" type="email" name="email" class="form-control" :value="old('email')" required autocomplete="username">
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="password" class="form-label fw-bold">Password</label>
+                                    <input id="password" type="password" name="password" class="form-control" required autocomplete="new-password">
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="password_confirmation" class="form-label fw-bold">Confirm Password</label>
+                                    <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" required autocomplete="new-password">
+                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    {{ __('Already registered?') }}
+                                </a>
+                                <button type="submit" class="btn btn-primary ms-8">
+                                    {{ __('Register Staff') }}
+                                </button>
+                            </div>
+                        </form>
+
                     </div>
                     <!-- footer -->
                     <div class="container-fluid">
@@ -306,10 +319,7 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
 
-
-    <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 
 </html>
+

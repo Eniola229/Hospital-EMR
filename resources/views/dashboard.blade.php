@@ -123,7 +123,12 @@
                             </div>
                         </div>
                         <!-- end welcome -->
-
+                            <!-- Display Error Message -->
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
 
                         <div class="row column3">
                         </div>
@@ -174,7 +179,7 @@
 
                                     @if($refers->isEmpty())
                                     <p>No Refer Yet</p>
-                                @else
+                                     @else
                                     <div class="list-group">
                                         @foreach($refers as $refer)
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-align: left; border: none; cursor: pointer; box-shadow: none;">
@@ -203,13 +208,18 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                               </div>
                                               <div class="modal-body">
-                                                ...
+                                                <p> Refered from {{ $refer->refer_from_name }} </p>
+                                                <p> Patient Email: {{ $refer->message_sent }} </p>
+
+                                                <a style="display: inline-block; width: auto;" href="{{ url('patientpahrrecord', $refer->patient_id) }}">
+                                                        <button class="btn btn-primary">View Patient Record</button> 
+                                                    </a>
                                               </div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                                               </div>
-                                            </div>
+                                             </div>
                                           </div>
                                         </div>
 

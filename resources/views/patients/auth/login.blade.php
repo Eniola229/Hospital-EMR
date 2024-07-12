@@ -1,9 +1,9 @@
-
+<!-- 
     <x-auth-session-status class="mb-4" :status="session('status')" />
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+    <!-- Required meta tags 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
@@ -12,19 +12,19 @@
 
     <link rel="stylesheet" href="{{ asset('logincss/owl.carousel.min.css') }}">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -
     <link rel="stylesheet" href="{{ asset('logincss/bootstrap.min.css') }}" >
     
-    <!-- Style -->
+    <!-- Style -
     <link rel="stylesheet" href="{{ asset('logincss/style.css') }}">
 
-    <title>Doctor's Login | EMR</title>
+    <title>Login | EMR</title>
   </head>
   <body>
   
 
   <div class="d-md-flex half">
-    <div class="bg" style="background-image: url('https://img.freepik.com/free-photo/medium-shot-smiley-doctor-with-coat_23-2148814212.jpg?t=st=1720473590~exp=1720477190~hmac=b6c4cab4de3c302eefe4f1e5288871dcc90ebc1eec2a34e720ebb0bacc910081&w=360');"></div>
+    <div class="bg" style="background-image: url('https://www.rccghealthcentre.com/assets/images/mbr-1066x711.jpeg');"></div>
     <div class="contents">
 
       <div class="container">
@@ -32,8 +32,8 @@
           <div class="col-md-12">
             <div class="form-block mx-auto">
               <div class="text-center mb-5">
-              <h3>Doctor's Login <strong></strong></h3>
-             <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
+              <h3>Login <strong></strong></h3>
+             <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -
               </div>
              <form method="POST" action="{{ route('login') }}">
              @csrf
@@ -79,4 +79,4 @@
     <script src="{{ asset('loginjs/bootstrap.min.js')}}"></script>
     <script src="{{ asset('loginjs/main.js')}}"></script>
   </body>
-</html>
+</html> -->
