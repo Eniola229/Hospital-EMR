@@ -92,10 +92,12 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        // Mail::to($user->email)->send(new RegistraionMail($user));
+         //Mail::to($user->email)->send(new RegistraionMail($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect()->intended(url('dashboard'));
+        // return redirect()->intended(url('dashboard'));
+
+        return redirect()->back()->with('status', 'Doctor Succesfully Added');
     }
 }

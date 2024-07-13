@@ -119,6 +119,12 @@
                             </div>
                         </div>
                         <!-- end welcome -->
+                         @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+
 
 
                         <div class="row column3">

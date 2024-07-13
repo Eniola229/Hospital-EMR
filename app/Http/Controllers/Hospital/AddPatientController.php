@@ -79,7 +79,7 @@ class AddPatientController extends Controller
             'password' => $hashedPassword,  // Use the hashed password
         ]);
 
-        // Mail::to($add->email)->send(new AddPatientMail($add));
+        Mail::to($add->email)->send(new AddPatientMail($add));
 
         return redirect()->back()->with('status', 'Patient Succesfully Added');
     }

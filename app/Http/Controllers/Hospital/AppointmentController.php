@@ -42,7 +42,7 @@ class AppointmentController extends Controller
             'complain' => $request->complain,
             'email' => $request->email,
         ]);
-                // Mail::to($app->email)->send(new AppoinmentMail($app));
+            Mail::to($app->email)->send(new AppoinmentMail($app));
                 
                 
                 return redirect()->back()->with('status', 'appointment-success');

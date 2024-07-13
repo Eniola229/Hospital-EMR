@@ -408,7 +408,7 @@
                         <p>Redeemtion
                             City, Mowe Ibafo, Ogun State, Nigeria</p>
                         <p class="mt-3"><strong>Phone:</strong> <span>+2348182363462</span></p>
-                        <p><strong>Email:</strong> <span>info@rccghealthcenter.com</span></p>
+                        <p><strong>Email:</strong> <span>info@rccghealthcentre.com</span></p>
                     </div>
                     <div class="social-links d-flex mt-4">
                         <a href=""><i class="bi bi-twitter-x"></i></a>

@@ -18,7 +18,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background-color: #4CAF50;
+            background-color: darkblue;
             color: #ffffff;
             padding: 10px;
             text-align: center;
@@ -36,7 +36,7 @@
         }
         .button {
             display: inline-block;
-            background-color: #4CAF50;
+            background-color: darkblue;
             color: #ffffff;
             padding: 10px 20px;
             text-decoration: none;
@@ -60,7 +60,7 @@
         <div class="content">
             <h1>Welcome {{ $user->first_name }}!</h1>
             <p>Kindly verify your email by clicking the link below:</p>
-            <a href="https://www.rhc.org/doclogin/" class="button">Click here to Login</a>
+            <a href="https://www.rccghealthcentre.com/flemis/login" class="button">Click here to Verify and Login</a>
         </div>
         <div class="footer">
             <p><b>RHC Team</b></p>

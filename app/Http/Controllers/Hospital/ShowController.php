@@ -12,7 +12,6 @@ class ShowController extends Controller
 
        public function show(Request $request)
     {
-        // Start with a query builder instance
         $query = User::query();
 
         // Apply the search filter if it exists
@@ -24,7 +23,9 @@ class ShowController extends Controller
             $query->where('location', 'like', '%' . $location . '%');
         }
         
-       
+        // Filter by role (only roles with a value of 3)
+        $query->where('role', 3);
+
         $data = $query->get();
 
         // Return the view with the data
