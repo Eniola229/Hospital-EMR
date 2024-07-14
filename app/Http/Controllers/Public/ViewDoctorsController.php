@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Hospital;
+namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;  
 
-class ShowController extends Controller
+class ViewDoctorsController extends Controller
 {
-    //
- 
-       public function show(Request $request)
+    public function show(Request $request)
     {
         $query = User::query();
 
@@ -29,6 +27,6 @@ class ShowController extends Controller
         $data = $query->get();
 
         // Return the view with the data
-        return view('welcome', compact('data'));
+        return view('doctors', compact('data'));
     }
-} 
+}

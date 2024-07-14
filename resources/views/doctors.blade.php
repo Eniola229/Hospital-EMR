@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>RHC EMR | HOME</title>
+    <title>RHC EMR | DOCTORS</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <!-- Laravel Asset Helper for Favicons -->
@@ -59,8 +59,8 @@
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="https://www.rccghealthcentre.com/" class="active">Home<br></a></li>
-                        <li><a href="{{ url('doctors') }}">Doctors</a></li>
+                        <li><a href="https://www.rccghealthcentre.com/">Home<br></a></li>
+                        <li><a href="{{ url('doctors') }}" class="active">Doctors</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -68,7 +68,7 @@
 
                 <a class="cta-btn d-none d-sm-block" href="#appointment">Make an Appointment</a>
                 <a class="cta-btn d-none d-sm-block" href="{{ url('login') }}">Doctors Login</a>
-                <a class="cta-btn d-none d-sm-block" href="{{ route('patientlogin') }}">Patient Login</a>
+                <a class="cta-btn d-none d-sm-block" href="{{ url('patientslogin') }}">Patient Login</a>
 
             </div>
 
@@ -78,67 +78,6 @@
 
     <main class="main">
 
-        <!-- Hero Section -->
-        <section id="hero" class="hero section">
-
-            <img src="assets/img/bg.jpg" alt="" data-aos="fade-in">
-
-            <div class="container position-relative">
-
-                <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-                    <h2>WELCOME TO Redeemers Health Centre</h2>
-                    <p>Choose Our Hospital, Choose The Best Care For Yourself</p>
-                </div><!-- End Welcome -->
-
-                <div class="content row gy-4">
-                    <div class="col-lg-4 d-flex align-items-stretch">
-                        <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
-                            <h3>Do you need to see a Doctor?</h3>
-                            <p>
-                                We are here to help you get the best care. Redeemers Health Centre
-                            </p>
-                            <div class="text-center">
-                                <a href="#about" class="more-btn"><span>Click Search</span> <i
-                                        class="bi bi-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Why Box -->
-
-                    <div class="col-lg-8 d-flex align-items-stretch">
-                        <div class="d-flex flex-column justify-content-center">
-                            <div class="row gy-4">
-
-                                <div class="col-xl-12 d-flex align-items-stretch">
-
-                                    <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
-                                        <h3 class="text">Search for Specialties</h3>
-                                        <div class="row">
-                                            <div class="row">
-                                            <div class="col-8">
-                                                <form action="{{ route('welcome.show') }}" method="GET">
-                                                <input type="search" class="form-control"
-                                                   name="search" placeholder="Specialties"
-                                                    aria-label="Specialties" style="width: 100%;">
-                                            </div>                                              
-                                           <div class="col">
-                                              <input type="submit" class="btn btn-primary" aria-label="Search" value="Search">
-                                        </div> 
-                                       </div>
-                                       </form>
-                                       <a href="{{ url('doctors')  }}">
-                                         <button  style="width: 80%;" class="btn btn-primary mt-4">Doctors</button>
-                                        </a>
-                                    </div>
-
-                                </div><!-- End Icon Box -->
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- End  Content-->
-
-            </div>
-
-        </section><!-- /Hero Section -->
 
         <!-- Doctors Section -->
         <section id="doctors" class="doctors section">

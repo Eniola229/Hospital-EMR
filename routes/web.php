@@ -38,10 +38,19 @@ use App\Http\Controllers\Messages\ViewStaffMsgInfoController;
 use App\Http\Controllers\Patient\PatientLogin;
 
 
+//For public use
+use App\Http\Controllers\Public\ViewDoctorsController;
+
+
 //This is the route for all page
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('/doctors', function () {
+    return view('doctors');
+})->name('doctors');
+
 
 Route::get('/complains', function () {
     return view('complains'); 
@@ -130,7 +139,8 @@ Route::get('/', [ShowController::class, 'show'])->name('welcome.show');
 Route::get('/allstaffs', [ViewStaffController::class, 'viewstaffs'])->name('allstaffs.viewstaffs');
 //This is to make an appointment with a doctor (For The Viewing part of the doctor part)
 Route::get('/seedoctor/{id}', [ViewStaffSpecifiController::class, 'show'])->name('seedoctor.show');
-
+//This is to view all doctors on the doctors page 
+Route::get('/doctors', [ViewDoctorsController::class, 'show'])->name('doctors.show');
 
 
 
@@ -202,13 +212,17 @@ require __DIR__.'/auth.php';
 //for patients route 
 
 //Patient Login Route
+require __DIR__.'/patientsauth.php';
 
 
-
-Route::get('/patients/dashboard', function() {
-    return view('patients.dashboard');
-})->middleware(['auth', 'verified'])->name('patients.dashboard');
+Route::get('/patients/patienthome', function() {
+    return view('patients.patienthome');
+})->middleware(['auth', 'verified'])->name('patients.patienthome');
 
 Route::get('/patients/patienteconter', function() {
     return view('patients.patienteconter');
 })->middleware(['auth', 'verified'])->name('patients.patienteconter');
+
+Route::get('/patients/patientphar', function() {
+    return view('patients.patientphar');
+})->middleware(['auth', 'verified'])->name('patients.patientphar');

@@ -157,7 +157,7 @@
                                 <option value="" selected disabled>Choose Role</option>
                                         <option value="0">Nurse</option>
                                         <option value="3">Doctor</option>
-                                        <option value="3">Pharmacy</option>
+                                        <option value="2">Pharmacy</option>
                                         <option value="4">Account</option>
                               </select>
                              

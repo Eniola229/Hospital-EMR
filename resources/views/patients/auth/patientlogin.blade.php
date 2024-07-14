@@ -18,7 +18,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="{{ asset('logincss/style.css') }}">
 
-    <title>Patient's Login | EMR</title>
+    <title>Patient's Login | EMR</title> 
   </head>
   <body>
   
@@ -35,7 +35,12 @@
               <h3>Patient's Login <strong></strong></h3>
              <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
               </div>
-             <form method="POST" action="{{ route('patientslogin.custom') }}">
+             @session('error')
+                  <div class="alert alert-danger" role="alert"> 
+                      {{ $value }}
+                  </div>
+              @endsession
+             <form method="POST" action="{{ route('patientlogin') }}">
              @csrf
                 <div class="form-group first">
                   <label for="username">Email</label>

@@ -31,7 +31,7 @@
                                         d="M13 9V3h8v6zM3 13V3h8v10zm10 8V11h8v10zM3 21v-6h8v6z" />
                                 </svg> <span>Dashboard</span></a>
                         </li>
-                        <li><a href="{{ url('message') }}">
+                        <li><a href="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="m22.045 7.77l-.05 6.3a4.679 4.679 0 0 1-.36 1.81a4.688 4.688 0 0 1-2.55 2.55a4.68 4.68 0 0 1-1.81.36h-2.33l-2 2a1.27 1.27 0 0 1-.44.3a1.33 1.33 0 0 1-.55.12a1.44 1.44 0 0 1-.55-.11a1.39 1.39 0 0 1-.46-.33l-1.95-1.94h-2.33a4.71 4.71 0 0 1-4.71-4.72v-6.6a4.71 4.71 0 0 1 1.38-3.34a4.78 4.78 0 0 1 3.33-1.38h10.66a4.71 4.71 0 0 1 4.72 4.72z"/></svg>
                             <span>Message</span></a></li>
                         <li><a href="{{ url('/patients/patienteconter') }}"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em"
@@ -41,7 +41,7 @@
                                         class="clr-i-solid clr-i-solid-path-1" />
                                     <path fill="none" d="M0 0h36v36H0z" />
                                 </svg> <span>Ecounter Notes </span></a></li>
-                        <li><a href="{{ url('pharmacy') }}">
+                        <li><a href="{{ url('/patients/patientphar') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                     viewBox="0 0 24 24">
                                     <g fill="none" stroke="currentColor" stroke-width="1.5">
@@ -62,20 +62,12 @@
                                 <span>Additional
                                     Pages</span></a>
                             <ul class="collapse list-unstyled" id="additional_page">
-                                <li>
+                                <!-- <li>
                                     <a> <x-dropdown-link :href="route('profile.edit')">
                                             {{ __('Profile') }}
                                         </x-dropdown-link>
                                     </a>
-                                </li>
-
-                                <li>
-                                    <a href="#"> <span>Level</span></a>
-                                </li>
-                                <li>
-                                    <a href="help.php"> <span>Support</span></a>
-                                </li>
-
+                                </li> -->
                             </ul>
                         </li>
                         <!-- <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Main Site</span></a></li> -->
