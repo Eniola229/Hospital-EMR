@@ -68,7 +68,7 @@
 
                 <a class="cta-btn d-none d-sm-block" href="#appointment">Make an Appointment</a>
                 <a class="cta-btn d-none d-sm-block" href="{{ url('login') }}">Doctors Login</a>
-                <a class="cta-btn d-none d-sm-block" href="{{ url('patientslogin') }}">Patient Login</a>
+                <a class="cta-btn d-none d-sm-block" href="{{ asset('https://www.rccghealthcentre.com/flemis/') }}">Patient Login</a>
 
             </div>
 

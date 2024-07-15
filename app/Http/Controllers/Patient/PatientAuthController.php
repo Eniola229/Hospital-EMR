@@ -15,7 +15,7 @@ class PatientAuthController extends Controller
         return view('patients.auth.patientlogin');
     }
 
-    // Handle login request
+    // Handle login request 
     public function login(Request $request)
     {
         // Validate the request data
@@ -34,7 +34,7 @@ class PatientAuthController extends Controller
         }
 
         // Authentication failed
-        return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
+        return back()->withError(['email' => 'The provided credentials do not match our records.']);
     }
 
     public function dashboard()
