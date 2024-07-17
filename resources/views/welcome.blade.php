@@ -28,6 +28,9 @@
 
     <!-- Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body class="index-page">
@@ -98,7 +101,7 @@
                                 We are here to help you get the best care. Redeemers Health Centre
                             </p>
                             <div class="text-center">
-                                <a href="#about" class="more-btn"><span>Click Search</span> <i
+                                <a href="{{ url('doctors') }}" class="more-btn"><span>Our Doctors</span> <i
                                         class="bi bi-chevron-right"></i></a>
                             </div>
                         </div>
@@ -115,13 +118,15 @@
                                         <div class="row">
                                             <div class="row">
                                             <div class="col-8">
-                                                <form action="{{ route('welcome.show') }}" method="GET">
-                                                <input type="search" class="form-control"
+                                                <form action="#" method="GET">
+                                                <input type="search" id="search" class="form-control"
                                                    name="search" placeholder="Specialties"
                                                     aria-label="Specialties" style="width: 100%;">
                                             </div>                                              
                                            <div class="col">
-                                              <input type="submit" class="btn btn-primary" aria-label="Search" value="Search">
+                                            <a href="#result">
+                                              <input type="button" class="btn btn-primary" aria-label="Search" value="Search">
+                                          </a>
                                         </div> 
                                        </div>
                                        </form>
@@ -142,41 +147,10 @@
 
         <!-- Doctors Section -->
         <section id="doctors" class="doctors section">
-
+        <div id="result">                     
             <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Doctors</h2>
-                <p>Meet Our Professional Doctor's</p>
-            </div><!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row gy-4">
-
-                 @foreach($data as $doctor)
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="team-member d-flex align-items-start">
-                            <div class="pic">
-                              <img style="height: 20vh" src="{{ asset('storage/' . $doctor->avatar) }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>{{ $doctor->first_name }}  {{ $doctor->last_name}}</h4>
-                                <span>{{ $doctor->specialization }}</span>
-                                <span>{{ $doctor->location }}</span>
-                                <p>{{ $doctor->intro}}</p>
-                                <div class="social">
-                                <a style="display: inline-block; width: auto;" href="{{ url('seedoctor', $doctor->id) }}">
-                                    <button class="btn btn-primary">Make An Appointment</button> 
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-                    </div><!-- End Team Member -->
-                </div>
-
-            </div>
+            
+           </div>
 
         </section><!-- /Doctors Section -->
 
@@ -472,6 +446,21 @@
 
     <!-- Preloader -->
     <div id="preloader"></div>
+
+    <script type="text/javascript">
+        $('#search').on('keyup', function() {
+            $value = $(this).val();
+
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('search') }}',
+                data: { search: $value },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        });
+    </script>
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

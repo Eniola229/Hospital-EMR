@@ -153,10 +153,10 @@
                                 </div>
                             <div class="form-floating col-md-6">
                                  <label for="floatingSelect">Choose Role</label>
-                              <select name="role" required class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                              <select name="role" required class="form-control" id="floatingSelect" aria-label="Floating label select example">
                                 <option value="" selected disabled>Choose Role</option>
                                         <option value="0">Nurse</option>
-                                        <option value="3">Doctor</option>
+                                        <option value="3">Doctor/Surgaon/Specialist</option>
                                         <option value="2">Pharmacy</option>
                                         <option value="4">Account</option>
                               </select>

@@ -134,7 +134,7 @@ Route::post('appointment', [AppointmentController::class, 'store'])->name('appoi
 //This is the route to submit the Appointment for Specific Doctor
 Route::post('appointmentdoc', [AppointmentDocController::class, 'store'])->name('appointmentdoc.store');
 //This is to view all doctors on the home page 
-Route::get('/', [ShowController::class, 'show'])->name('welcome.show');
+Route::get('/search', [ShowController::class, 'search']);
 //This is to show all Staff on the dasboard 
 Route::get('/allstaffs', [ViewStaffController::class, 'viewstaffs'])->name('allstaffs.viewstaffs');
 //This is to make an appointment with a doctor (For The Viewing part of the doctor part)
