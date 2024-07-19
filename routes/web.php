@@ -120,6 +120,10 @@ Route::get('/patientpahrrecord', function() {
     return view('patientpahrrecord');
 })->middleware(['auth', 'verified'])->name('patientpahrrecord.pharmacyrecord');
 
+Route::get('/help', function() {
+    return view('help');
+})->middleware(['auth', 'verified'])->name('help');
+
 
 // Route::get('/showecounterspecial', function () {
 //     return view('showecounterspecial');

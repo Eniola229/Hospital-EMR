@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RHC EMR | Patient</title>
+    <title>RHC EMR | Help</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -22,41 +22,25 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- responsive css -->
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
-    <!-- color css -->
+    <!-- color css --> 
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}" />
-    <!-- select bootstrap --> 
+    <!-- select bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}" />
     <!-- scrollbar css -->
     <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" />
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
 </head>
-  <style>
-        .profile-header {
-            color: #fff;
-            padding: 40px 0;
-            text-align: center;
-        }
-        .profile-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-    </style>
 
 <body class="dashboard dashboard_1">
     <div class="full_container">
         <div class="inner_container">
             <!-- Sidebar  -->
-             @include('components.sidenav')
+           @include('components.sidenav')
             <!-- end sidebar -->
             <!-- right content -->
             <div id="content">
@@ -103,7 +87,7 @@
                                                     </svg> </span></a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{ url('profile') }}">My Profile</a>
-                                                <a class="dropdown-item" href="{{ url('help') }}">Help</a>
+                                                <a class="dropdown-item" href="{{ ('help') }}">Help</a>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
 
@@ -128,148 +112,17 @@
                         <div class="row column_title">
                             <div class="col-md-12">
                                 <div class="page_title">
-                                    <h2>Welcome</h2>
+                                    <h2>Need Help?</h2>
                                 </div>
                             </div>
                         </div>
                         <!-- end welcome -->
-                            @if (session('status'))
-                                <div class="alert alert-success">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
+
 
                         <div class="row column3">
                         </div>
-                       <div class="container mt-4">
-					    <!-- Profile Header -->
-					    <!-- <div class="row">
-					        <div class="col-md-12">
-					            <div class="profile-header">
-					                <h1>{{ $patient->full_name }} Profile</h1>
-					                <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-avatar">
-					                <h3>{{ $patient->full_name }} </h3>
-					                <p>Email: {{ $patient->email }} </p>
-					            </div>
-					        </div>
-					    </div> -->
-
-					    <!-- Profile Information -->
-					    <div class="row mt-4">
-					        <div class="col-md-6">
-					            <div class="card">
-					                <div class="card-header">
-					                    Personal Information
-					                </div>
-					                <div class="card-body">
-					                    <p><strong>Name:</strong> {{ $patient->full_name }} </p>
-					                    <p><strong>Email:</strong> {{ $patient->email }} </p>
-					                    <p><strong>Phone Number:</strong> {{ $patient->phone_number }} </p>
-					                    <p><strong>Address:</strong> {{ $patient->home_address }} </p>
-					                </div>
-					            </div>
-					        </div>
-					        <div class="col-md-6">
-					            <div class="card">
-					                <div class="card-header">
-					                    Additional Information
-					                </div>
-					                <div class="card-body">
-					                    <p><strong>Member Since:</strong> {{ $patient->created_at }} </p>
-					                    <p><strong>Status:</strong> <span style="color: green;">Active</span></p>
-					                    <p><strong>Emegency Number :</strong> <a href="#">{{ $patient->phone_number }} </a></p>
-					                     <!-- Logout Button -->
-										    <div class="row mt-4">
-										        <div class="col-md-12 text-center">
-										            <form action="{{ url('viewsingleeconterpatient', $patient->id) }}" method="GET">
-										                @csrf
-										                <button type="submit" class="btn btn-danger">Swtch to Ecounter Note</button>
-										            </form>
-										        </div>
-                                                    <div class="col-md-12 mt-3 text-center">
-                                                    <a href="{{ url('patientpahrrecord', $patient->id) }}" method="GET">
-                                                        <button type="submit" class="btn btn-success">Pharmacy Records</button>
-                                                    </a>
-                                                </div>
-                                                 <div class="col-md-12 mt-3 text-center">
-                                                  
-                                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Refer to a Doctor</button>
-                                                    </div>
-										    </div>
-										</div>
-					                </div>
-					            </div>
-                                <div class="col-md-12 mt-4">
-                                    <h4>Past Doctors Refered</h4>
-                                      @if($refer->isEmpty())
-                                            <p>No records found</p>
-                                        @else
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Doctor Email</th>
-                                                        <th>Message</th>
-                                                        <th>Refer Email</th>
-                                                        <!-- Add more table headers as needed -->
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($refer as $item)
-                                                        <tr>
-                                                            <td>{{ $item->id }}</td>
-                                                            <td>{{ $item->doctor_email }}</td>
-                                                            <td>{{ $item->message_sent }}</td>
-                                                            <td>{{ $item->refer_from_email }}</td>
-                                                            <!-- Add more table columns as needed -->
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        @endif
-                                </div>
-					        </div>
-					    </div>
-
-                 <!-- The Modal -->
-               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Refer {{ $patient->full_name }} to a doctor</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <form action="{{ route('viewsingleeconterpatient.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" value="{{ $patient->id }}" name="patient_id" required>
-                            <input type="hidden" value="{{ $patient->email }}" name="patient_email" required>
-                            <input type="hidden" value="{{ Auth::user()->email }}" name="refer_from_email" required>
-                            <input type="hidden" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}" name="refer_from_name" required>
-                          <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Choose Doctor:</label>
-                           <select name="doctor_email" required class="form-select form-select-lg mb-3" aria-label="Large select example">
-                              <option selected disabled>Click here to choose a Doctor</option>
-                            @foreach($doctors as $doctor)
-                              <option style="color: black;" value="{{ $doctor->email }}">{{ $doctor->first_name }} {{ $doctor->last_name }} | {{ $doctor->specialization }}</option>
-                            @endforeach
-                            </select>
-
-                          </div>
-                          <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea name="message_sent" class="form-control" id="message-text"></textarea>
-                          </div>
-                       
-                      </div>
-                      <div class="modal-footer">
-                          <button type="submit" class="btn btn-primary">Send message</button>
-                      </div>
-                       </form>
-                    </div>
-                  </div>
-                </div>
-
+                        <div class="row column4 graph">
+                           
                     </div>
                     <!-- footer -->
                     <div class="container-fluid">
@@ -291,7 +144,38 @@
                         <h4 class="modal-title">Reply</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                  
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form class="send_member_form" method="POST" action="../includes/send_message_mem_inc.php">
+                            <div
+                                style="position: relative; display: inline-block; background-color: darkblue; padding: 10px; border-radius: 5px; color: white; width: 10%;">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                                    viewBox="0 0 24 24">
+                                    <g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke-dasharray="66" stroke-dashoffset="66" stroke-width="2"
+                                            d="M3 14V5H21V19H3V14">
+                                            <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s"
+                                                values="66;0" />
+                                        </path>
+                                        <path stroke-dasharray="26" stroke-dashoffset="26"
+                                            d="M3 16L7 13L10 15L16 10L21 14">
+                                            <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s"
+                                                dur="0.4s" values="26;0" />
+                                        </path>
+                                    </g>
+                                    <circle cx="7.5" cy="9.5" r="1.5" fill="white" fill-opacity="0">
+                                        <animate fill="freeze" attributeName="fill-opacity" begin="1s"
+                                            dur="0.4s" values="0;1" />
+                                    </circle>
+                                </svg>
+                                <input type="file" name="image" style="width: 100%;">
+                            </div>
+
+                            <button
+                                style="background: darkblue; color: white; border: none; height: 10vh; width: 100%">Reply</button>
+                        </form>
+                    </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -324,7 +208,7 @@
     <!-- custom js -->
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

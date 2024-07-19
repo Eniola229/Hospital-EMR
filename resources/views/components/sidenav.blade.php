@@ -99,7 +99,7 @@
                                             d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10" />
                                     </g>
                                 </svg>
-                                <span>Pharmacy</span></a></li>
+                                <span>Drug Prescription</span></a></li>
                          <!--  @if(Auth::user()->role == 5 || Auth::user()->role == 1)
                         <li><a href="{{ url('payment') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
@@ -131,7 +131,7 @@
                                     <a href="#"> <span>Level</span></a>
                                 </li>
                                 <li>
-                                    <a href="help.php"> <span>Support</span></a>
+                                    <a href="{{ url('help') }}"> <span>Support</span></a>
                                 </li>
 
                             </ul>
