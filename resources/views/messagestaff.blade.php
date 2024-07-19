@@ -37,6 +37,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!----Jquery link----->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -175,7 +178,7 @@
                                                     @if($allMessages->isEmpty())
                                                         <p>No Messages Yet</p>
                                                     @else
-                                                        <div>
+                                                        <div id="dataContainer">
                                                             @foreach ($allMessages as $message)
                                                                 @if(($staffinfo->id == $message->resiver_id && Auth::user()->id == $message->user_id) || ($staffinfo->id == $message->user_id && Auth::user()->id == $message->resiver_id))
                                                                     @if ($message->resiver_id == Auth::user()->id)
@@ -247,7 +250,7 @@
 
                                             <div class="col-md-6">
                                                 <!-----Start of sending message --->
-                                               <form  id="messageForm" action="{{ route('messagestaff.store') }}" method="POST" class="form-control mt-4 mb-4" enctype="multipart/form-data" style="width: 400px; justify-content: center; align-items: center; margin: auto;">
+                                               <form   action="{{ url('messagestaff.store') }}" method="POST" class="form-control mt-4 mb-4" enctype="multipart/form-data" style="width: 400px; justify-content: center; align-items: center; margin: auto;" id="messageForm">
                                                     @csrf
                                                     <input type="hidden" name="user_id" value="{{ AUth::user()->id }}">
                                                     <input type="hidden" name="resiver_id" value="{{ $staffinfo->id }}">
@@ -263,7 +266,7 @@
                                                     </div>
                                                 </form>
                                                 <!-----Ending of form to send message  ---->
-
+ 
                                             </div>
                                         </div>
                                     </div>
@@ -364,7 +367,6 @@
         var ps = new PerfectScrollbar('#sidebar');
     </script>
     <!-- jQuery -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- wow animation -->
@@ -385,6 +387,23 @@
     <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
     <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+                                              
+    <!------Jquery code to send message ---->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#messageForm').on('submit', function(event) {
+            event.preventDefault();
+                $.ajax({
+                url: "{{ route('messagestaff.store') }}",
+                data: $('#messageForm').serialize(),
+                type: 'post',
+                success: function(result) {
+                    $('#messageForm')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

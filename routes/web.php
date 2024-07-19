@@ -177,7 +177,7 @@ Route::middleware('auth')->group(function () {
 
     //This is to add ecounter note
     Route::post('addecounter', [AddToEconterController::class, 'store'])->name('addecounter.store');
-    //This is to view all staffs for the message 
+    //This is to view all staffs for message  page
     Route::get('/message', [VewLastMessageController::class, 'viewstaffsmsg'])->name('message.viewstaffsmsg');
 
 
