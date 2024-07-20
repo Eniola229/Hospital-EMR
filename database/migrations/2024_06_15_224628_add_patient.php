@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('time_send');
             $table->string('by_who_name');
             $table->string('by_who_email');
+            $table->string('Payment_Status')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
