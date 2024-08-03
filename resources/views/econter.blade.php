@@ -137,7 +137,7 @@
                               <tbody>
                             @foreach($patients as $patient)
                                 <tr>
-                                  <th scope="row">{{ $patient->id }}</th>
+                                  <th scope="row">#</th>
                                   <td>{{ $patient->patientID }}</td>
                                   <td>{{ $patient->full_name }}</td>
                                   <td>{{ $patient->email}}</td>

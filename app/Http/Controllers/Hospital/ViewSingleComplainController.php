@@ -23,3 +23,4 @@ class ViewSingleComplainController extends Controller
         return view('viewsinglecomplain', compact('complain'));
     }
 }
+ 

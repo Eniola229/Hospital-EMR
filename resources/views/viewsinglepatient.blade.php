@@ -180,12 +180,14 @@
 					                    <p><strong>Emegency Number :</strong> <a href="#">{{ $patient->phone_number }} </a></p>
 					                     <!-- Logout Button -->
 										    <div class="row mt-4">
+                                                @if(Auth::user()->role == 0 || Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 1)
 										        <div class="col-md-12 text-center">
 										            <form action="{{ url('viewsingleeconterpatient', $patient->id) }}" method="GET">
 										                @csrf
 										                <button type="submit" class="btn btn-danger">Swtch to Ecounter Note</button>
 										            </form>
 										        </div>
+                                                @endif
                                                     <div class="col-md-12 mt-3 text-center">
                                                     <a href="{{ url('patientpahrrecord', $patient->id) }}" method="GET">
                                                         <button type="submit" class="btn btn-success">Pharmacy Records</button>
@@ -217,7 +219,7 @@
                                                 <tbody>
                                                     @foreach($refer as $item)
                                                         <tr>
-                                                            <td>{{ $item->id }}</td>
+                                                            <td>#</td>
                                                             <td>{{ $item->doctor_email }}</td>
                                                             <td>{{ $item->message_sent }}</td>
                                                             <td>{{ $item->refer_from_email }}</td>

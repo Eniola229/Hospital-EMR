@@ -220,7 +220,7 @@
                                   <tbody>
                                 @forelse($pharmacyrecords as $pharmacyrecord)
                                     <tr>
-                                      <th scope="row">{{ $pharmacyrecord->id }}</th>
+                                      <th scope="row">#</th>
                                       <td>{{ $pharmacyrecord->drugs }}</td>
                                       <td>{{ $pharmacyrecord->doctors_name }}</td>
                                       <td>{{ $pharmacyrecord->doctors_comments }}</td>

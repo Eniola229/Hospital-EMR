@@ -185,76 +185,63 @@
 					            <input type="text" class="form-control" value="{{ old('patientid', $patient->patientID) }}" name="patientid" placeholder="Profile ID" aria-label="Profile ID">
 					            <x-input-error :messages="$errors->get('patientid')" class="mt-2" />
 					        </div>
-					    </div>
-
-					    <div class="row mt-2">
 					        <div class="col">
 					            <label>Ward*</label>
 					            <input type="text" placeholder="Ward" class="form-control" value="{{ old('ward', $patient->ward) }}" name="ward" aria-label="Ward" required>
 					            <x-input-error :messages="$errors->get('ward')" class="mt-2" />
 					        </div>
-
 					        <div class="col">
 					            <label>Unit*</label>
 					            <input type="text" placeholder="Unit" class="form-control" value="{{ old('unit', $patient->unit) }}" name="unit" aria-label="Unit" required>
 					            <x-input-error :messages="$errors->get('unit')" class="mt-2" />
 					        </div>
-					    </div>
-
-					    <div class="row mt-2">
-					        <div class="input-group">
-					            <span class="input-group-text">Consultant*</span>
-					            <textarea class="form-control" aria-label="Consultant" rows="4" name="consultant" required>{{ old('consultant', $patient->consultant) }}</textarea>
+				            <div class="col">
+					            <label>Consultant*</label>
+					            <input type="text" placeholder="consultant" class="form-control" value="{{ old('consultant', $patient->consultant) }}" name="consultant" aria-label="consultant" required>
 					            <x-input-error :messages="$errors->get('consultant')" class="mt-2" />
 					        </div>
-					    </div>
-
-					    <div class="row mt-2">
-					        <div class="input-group">
-					            <span class="input-group-text">Medical Officer*</span>
-					            <textarea class="form-control" aria-label="Medical Officer" rows="4" name="medical_officer" required>{{ old('medical_officer', $patient->medical_officer) }}</textarea>
+				            <div class="col">
+					            <label>Medical Officer</label>
+					            <input type="text" placeholder="" class="form-control" name="medical_officer" aria-label="medical_officer" readonly>
 					            <x-input-error :messages="$errors->get('medical_officer')" class="mt-2" />
 					        </div>
 					    </div>
-
-					    <div class="row mt-2">
-					        <div class="input-group">
-					            <span class="input-group-text">Presenting Complaint*</span>
-					            <textarea class="form-control" aria-label="Presenting Complaint" rows="4" name="presenting_complaint" required>{{ old('presenting_complaint', $patient->presenting_complaint) }}</textarea>
+					    <hr>
+					    <div class="row mt-4">
+					     <div class="col">
+					        <div class="col">
+					        	<span class="input-group-text">Presenting Complaint*</span>
+					            <textarea class="form-control" aria-label="Presenting Complaint" rows="2" name="presenting_complaint" required>{{ old('presenting_complaint', $patient->presenting_complaint) }}</textarea>
 					            <x-input-error :messages="$errors->get('presenting_complaint')" class="mt-2" />
 					        </div>
-					    </div>
-
-					    <div class="row mt-2">
-					        <div class="input-group">
-					            <span class="input-group-text">Physical Examination*</span>
-					            <textarea class="form-control" aria-label="Physical Examination" rows="4" name="physical_examination" required>{{ old('physical_examination', $patient->physical_examination) }}</textarea>
+					        <div class="col">
+					        	<span class="input-group-text">Physical Examination*</span>
+					            <textarea class="form-control" aria-label="Physical Examination" rows="2" name="physical_examination" required>{{ old('physical_examination', $patient->physical_examination) }}</textarea>
 					            <x-input-error :messages="$errors->get('physical_examination')" class="mt-2" />
 					        </div>
-					    </div>
-
-					    <div class="row mt-2">
-					        <div class="input-group">
-					            <span class="input-group-text">Clinic Diagnosis*</span>
-					            <textarea class="form-control" aria-label="Clinic Diagnosis" rows="4" name="clinic_diagnosis" required>{{ old('clinic_diagnosis', $patient->clinic_diagnosis) }}</textarea>
-					            <x-input-error :messages="$errors->get('clinic_diagnosis')" class="mt-2" />
-					        </div>
-					    </div>
-
-					    <div class="row mt-2">
-					        <div class="input-group">
+					       <div class="col">
 					            <span class="input-group-text">History Presenting Complaint*</span>
-					            <textarea class="form-control" aria-label="History Presenting Complaint" rows="4" name="history_presenting_complaint" required>{{ old('history_presenting_complaint', $patient->history_presenting_complaint) }}</textarea>
+					            <textarea class="form-control" aria-label="History Presenting Complaint" rows="2" name="history_presenting_complaint" required>{{ old('history_presenting_complaint', $patient->history_presenting_complaint) }}</textarea>
 					            <x-input-error :messages="$errors->get('history_presenting_complaint')" class="mt-2" />
 					        </div>
-					    </div>
-
-					    <div class="row mt-2">
-					        <div class="input-group">
+					       </div>
+					       <div class="col">
+					            <span class="input-group-text">Clinic Diagnosis*</span>
+					            <textarea class="form-control" aria-label="Clinic Diagnosis" rows="10" name="clinic_diagnosis" required>{{ old('clinic_diagnosis', $patient->clinic_diagnosis) }}</textarea>
+					            <x-input-error :messages="$errors->get('clinic_diagnosis')" class="mt-2" />
+					        </div>
+					       <div class="col">
+					         <div class="col">
+					            <span class="input-group-text">Clinic Diagnosis*</span>
+					            <textarea class="form-control" aria-label="Clinic Diagnosis" rows="2" name="clinic_diagnosis" required>{{ old('clinic_diagnosis', $patient->clinic_diagnosis) }}</textarea>
+					            <x-input-error :messages="$errors->get('clinic_diagnosis')" class="mt-2" />
+					        </div>
+					        <div class="col">
 					            <span class="input-group-text">Plan*</span>
-					            <textarea class="form-control" aria-label="Plan" rows="4" name="plan" required>{{ old('plan', $patient->plan) }}</textarea>
+					            <textarea class="form-control" aria-label="Plan" rows="2" name="plan" required>{{ old('plan', $patient->plan) }}</textarea>
 					            <x-input-error :messages="$errors->get('plan')" class="mt-2" />
 					        </div>
+					   	   </div>
 					    </div>
 
 					    <div class="col-12 mt-3">
@@ -291,6 +278,7 @@
 					                    <p><strong>Clinic Diagnosis:</strong> <a href="#">{{ $ecounter->clinic_diagnosis }} </a></p>
 					                    <p><strong>History Presenting Complaint:</strong> <a href="#">{{ $ecounter->history_presenting_complaint }} </a></p>
 					                    <p><strong>Plan:</strong> <a href="#">{{ $ecounter->plan }} </a></p>
+					                    <p><strong>Time:</strong> <a href="#">{{ $ecounter->created_at->diffForHumans() }} </a></p>
 					                </div>
 					            </div>
 					        </div>

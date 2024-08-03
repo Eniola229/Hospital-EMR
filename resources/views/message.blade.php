@@ -153,7 +153,7 @@
                                               <tbody>
                                                 @foreach($staffs as $staff)
                                                 <tr>
-                                                  <th scope="row">{{$staff->id}}</th>
+                                                  <th scope="row">#</th>
                                                   <td>{{$staff->first_name}}</td>
                                                   <td>{{$staff->specialization}}</td>
                                                   <td><a href="{{ url('messagestaff', $staff->id) }}"><button class="btn btn-primary">Message</button></a></td>
@@ -166,7 +166,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                         <!--    <div class="col-md-6">
                                 <div class="dash_blog">
                                     <div class="dash_blog_inner">
                                         <div class="dash_head">
@@ -183,7 +183,7 @@
                                     <div class="list-group">
                                         <!---card starts here --->
 
-                                    @if($messages->isEmpty())
+                                   <!--  @if($messages->isEmpty())
                                     <p>You have not message or recived any message yet</p>
                                         @else
                                             <div class="list-group">
@@ -207,7 +207,7 @@
 
                                                 @endforeach
                                             </div>
-                                        @endif
+                                        @endif --
 
                                         </div>
 
@@ -218,7 +218,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <!-- footer -->

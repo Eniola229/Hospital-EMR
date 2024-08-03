@@ -123,6 +123,10 @@
                         </div>
                         <div class="table-responsive table-wrapper">
                             <h4>All Patients</h4>
+                              <div class="search-bar">
+                                <h5>Search For Patient</h5>
+                                <input type="text" id="searchInput" class="form-control" placeholder="Search patient...">
+                            </div>
                            <table class="table table-striped">
                               <thead>
                                 <tr>
@@ -134,10 +138,10 @@
                                   <th scope="col">Actions</th>
                                 </tr>
                               </thead>
-                              <tbody>
+                              <tbody id="patientTableBody">
                             @foreach($patients as $patient)
                                 <tr>
-                                  <th scope="row">{{ $patient->id }}</th>
+                                  <th scope="row">#</th>
                                   <td>{{ $patient->patientID }}</td>
                                   <td>{{ $patient->full_name }}</td>
                                   <td>{{ $patient->email}}</td>
@@ -238,7 +242,21 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/chart_custom_style1.js') }}"></script>
 
-    
+     <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            var searchTerm = this.value.toLowerCase();
+            var rows = document.querySelectorAll('#patientTableBody tr');
+            
+            rows.forEach(function(row) {
+                var cells = row.querySelectorAll('td');
+                var found = Array.from(cells).some(function(cell) {
+                    return cell.textContent.toLowerCase().includes(searchTerm);
+                });
+                row.style.display = found ? '' : 'none';
+            });
+        });
+    </script> 
 
 </body>
 

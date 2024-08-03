@@ -15,15 +15,12 @@ use App\Http\Controllers\Hospital\ShowToAddPatientController;
 use App\Http\Controllers\Hospital\ShowPatientController; 
 use App\Http\Controllers\Hospital\ViewSinglePatientController; 
 use App\Http\Controllers\Hospital\ViewEcounterNote; 
-use App\Http\Controllers\Hospital\ShowPatientSpecificEcounter;  
 use App\Http\Controllers\Hospital\ViewForAccount; 
 // use App\Http\Controllers\Hospital\ShowSpecificEounterNote; 
 use App\Http\Controllers\Hospital\AddToEconterController; 
 // use App\Http\Controllers\Hospital\ViewStaffMessageController; 
 use App\Http\Controllers\Pharmacy\ViewPateintPharController; 
 use App\Http\Controllers\Pharmacy\ViewSinglePatentRecordsController; 
-use App\Http\Controllers\Pharmacy\AddPharmacyController; 
-use App\Http\Controllers\Pharmacy\ReferToADoctorController; 
 
 
 //For Staff
@@ -149,7 +146,7 @@ Route::get('/doctors', [ViewDoctorsController::class, 'show'])->name('doctors.sh
 
 
 
-//For athentication
+//athenticated
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -173,7 +170,7 @@ Route::middleware('auth')->group(function () {
     //This is to show a single patient 
     Route::get('/viewsinglepatient/{id}', [ViewSinglePatientController::class, 'show'])->name('viewsinglepatient.show');
     //This is to show a single patient for Ecounter
-    Route::get('/viewsingleeconterpatient/{id}', [ShowPatientSpecificEcounter::class, 'show'])->name('viewsingleeconterpatient.show');
+    Route::get('/viewsingleeconterpatient/{id}', [AddToEconterController::class, 'show'])->name('viewsingleeconterpatient.show');
 
     //This is to add ecounter note
     Route::post('addecounter', [AddToEconterController::class, 'store'])->name('addecounter.store');
@@ -192,10 +189,10 @@ Route::middleware('auth')->group(function () {
     //This is to view patints pharmacy record 
     Route::get('/patientpahrrecord/{id}', [ViewSinglePatentRecordsController::class, 'show'])->name('patientpahrrecord.show');
     //This is to add new pharmcy record to patints pharmacy record 
-    Route::post('/patientpahrrecord', [AddPharmacyController::class, 'store'])->name('patientpahrrecord.store');
+    Route::post('/patientpahrrecord', [ViewSinglePatentRecordsController::class, 'store'])->name('patientpahrrecord.store');
 
     //This is for refer a doctor 
-    Route::post('/viewsingleeconterpatient', [ReferToADoctorController::class, 'store'])->name('viewsingleeconterpatient.store');
+    Route::post('/viewsingleeconterpatient', [ViewSinglePatientController::class, 'store'])->name('viewsingleeconterpatient.store');
     Route::get('/dashboard', [ViewGeneralNotificationOrMsgController::class, 'show'])->name('dashboard.show');
     //This is to message  staff
     Route::post('/messagestaff', [MessageController::class, 'store'])->name('messagestaff.store');

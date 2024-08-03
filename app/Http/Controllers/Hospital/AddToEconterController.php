@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Econter;  
 use Illuminate\Http\RedirectResponse;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\AddPatient; 
 
 class AddToEconterController extends Controller
 {
@@ -19,7 +20,6 @@ class AddToEconterController extends Controller
             'unit' => ['required', 'string', 'max:255'], 
             'ward' => ['required', 'string', 'max:255'],
             'consultant' => ['required', 'string', 'max:255'],
-            'medical_officer' => ['required', 'string', 'max:125'],
             'presenting_complaint' => ['required', 'string', 'max:255'],
             'physical_examination' => ['required', 'string', 'max:255'],
             'clinic_diagnosis' => ['required', 'string'],
@@ -35,7 +35,7 @@ class AddToEconterController extends Controller
             'unit' => $request->unit,
             'ward' => $request->ward,
             'consultant' => $request->consultant,
-            'medical_officer' => $request->medical_officer,
+           'medical_officer' => Auth::user()->first_name,
             'presenting_complaint' => $request->presenting_complaint,
             'physical_examination' => $request->physical_examination,
             'clinic_diagnosis' => $request->clinic_diagnosis,
@@ -47,5 +47,24 @@ class AddToEconterController extends Controller
         // Redirect back with a success message
         return redirect()->back()->with('status', 'Ecounter Note Successfully Added');
     }
+
+      public function show($id)
+        {
+            // Retrieve the patient with the given ID
+            $patient = AddPatient::find($id);
+
+            // Check if patient exists
+            if (!$patient) {
+                return redirect()->back()->with('error', 'Patient not found');
+            }
+
+            // Retrieve the associated ecounter using patient id
+            $ecounters = Econter::where('patient_id', $id)
+                         ->orderBy('created_at', 'desc')
+                         ->get();
+
+            // Return the view with patient and ecounter details
+            return view('viewsingleeconterpatient', compact('patient', 'ecounters'));
+        }
 }
  
